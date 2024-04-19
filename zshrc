@@ -143,7 +143,11 @@ function gunwipall() {
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
+# Add locations to $PATH variable
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Application/Visual Studio Code.app/Contents/Resources/app/bin"
 export senpai="your_value"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
