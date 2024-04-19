@@ -9,5 +9,6 @@ brew install httpie
 brew install bat
 
 # Applications
-brew install google-chrome
-brew install visual-studio-code
+brew install --no-quarantine google-chrome
+brew install --no-quarantine visual-studio-code
+brew install --no-quarantine raycast
