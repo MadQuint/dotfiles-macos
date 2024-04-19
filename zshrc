@@ -78,8 +78,8 @@ plugins=(
     kubectl
 )
 
-source $ZSH/oh-my-zsh.sh
 
+source $ZSH/oh-my-zsh.sh
 
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
@@ -90,7 +90,6 @@ zstyle ':omz:update' frequency 7
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -106,6 +105,15 @@ zstyle ':omz:update' frequency 7
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+# Set Variables
+# Syntax highligthing for man pages using bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Custom Functions
+function mkcd() {
+  mkdir -p "$@" && cd "$_"
+}
+
 # ZSH aliases
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias zsh_config="nvim ~/.zshrc"
@@ -117,11 +125,6 @@ alias ls='ls -lAFh'
 
 # Web Dev aliases
 alias pnx="pnpm nx"
-
-# Custom Functions
-function mkcd() {
-  mkdir -p "$@" && cd "$_"
-}
 
 # Git aliases
 ## WIP / Stashing methods
@@ -153,5 +156,3 @@ export senpai="your_value"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/gianni.acciarri/.sdkman"
 [[ -s "/Users/gianni.acciarri/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/gianni.acciarri/.sdkman/bin/sdkman-init.sh"
-
-
