@@ -44,8 +44,6 @@ I'm constantly tweaking and adding to these, so be sure to check back often!
 - Mission Control Preference (don't rearrange spaces)
 - Finder Show Path Bar
 - Trackpad (Three Finger Drag and Tap to Click)
-- .zshrch
 - Git (config and SSH keys)
-- Homebrew install
 
 This repo is still a work in progress.
