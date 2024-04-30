@@ -1,0 +1,33 @@
+# prep antidote
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+
+# set omz variables
+ZSH=$(antidote path ohmyzsh/ohmyzsh)
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
+[[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
+
+ZSH_THEME="agnoster"
+
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+zstyle ':omz:update' mode auto
+zstyle ':omz:update' frequency 7
+
+source ~/.aliases
+source ~/.functions
+
+# load antidote
+antidote load
+
+# User configuration
+
+# Syntax highligthing for man pages using bat
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# Add locations to $PATH variable
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Application/Visual Studio Code.app/Contents/Resources/app/bin"

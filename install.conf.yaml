@@ -1,18 +1,27 @@
 - defaults:
     link:
+      create: true
       relink: true
+      force: true
+    shell:
+      stdout: true
+      stderr: true
+      stdin: true
 
-- clean: ['~']
+- clean: ["~", "~/.config", "~/.npm-global"]
 
 - link:
-    ~/.zshrc:
-    ~/.gitconfig:
+    # Shell stuff
+    ~/.aliases: shell/aliases
+    ~/.functions: shell/functions
+    ~/.zsh_plugins.txt: shell/zsh_plugins.txt
+    ~/.zshrc: shell/zshrc
+    # Git
+    ~/.gitconfig: git/gitconfig
 
 - create:
     - ~/Work
 
 - shell:
-    - 
-        command: ./setup_homebrew.zsh
-        stdout: true
-        stderr: true
+    - description: 'Installing Homebrew'
+      command: ./setup_homebrew.zsh
