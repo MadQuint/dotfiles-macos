@@ -18,7 +18,7 @@ Dotfiles are basically various application settings and preferences that can be 
 
 WIP
 
-## What's Inside? 
+y## What's Inside? 
 
 Here's a overview of what will be included:
 
@@ -39,7 +39,6 @@ I'm constantly tweaking and adding to these, so be sure to check back often!
 
 ## TODO
 - Terminal Preferences
-- Change Shell to ZSH
 - Dock Preferences
 - Mission Control Preference (don't rearrange spaces)
 - Finder Show Path Bar
