@@ -1,21 +1,35 @@
-# Taps
-tap "homebrew/bundle"
 tap "cloudflare/cloudflare"
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 
-# Brews (Packages)
+# The fastest shell plugin manager
+brew "antidote"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 brew "coreutils"
+# command-line HTTP client
 brew "curl"
 brew "gettext"
 brew "git"
+# User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 brew "jq"
+# Pager program simliar to more
+brew "less"
+# Modern and fast text editor fully compatible with Vim.
 brew "neovim"
 brew "nvm"
+# UNIX shell (command interpreter)
+brew "zsh"
 
-# Casks (Applications)
-cask "visual-studio-code"
+# Bash scripts that integrate bat with various command-line tools
+cask "brave-browser"
+cask "font-fira-code"
+cask "microsoft-auto-update"
+cask "microsoft-edge"
 cask "raycast"
+cask "visual-studio-code"
 
 vscode "adam-bender.commit-message-editor"
 vscode "adpyke.codesnap"
