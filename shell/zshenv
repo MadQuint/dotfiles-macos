@@ -1,5 +1,1 @@
-export PERPLEXITY_API_TOKEN="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"
-
 export HOMEBREW_CASK_OPTS="--no-quarantine --no-binaries"
-export N_PREFIX="$HOME/.n"
-export PREFIX="$N_PREFIX"

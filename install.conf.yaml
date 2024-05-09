@@ -2,7 +2,7 @@
     link:
       create: true
       relink: true
-      # force: true
+      force: true
     shell:
       stdout: true
       stderr: true
@@ -12,8 +12,6 @@
 
 - link:
     # Shell stuff
-    ~/.aliases: shell/aliases
-    ~/.function: shell/functions
     ~/.zsh_plugins.txt: shell/zsh_plugins
     ~/.zshenv: shell/zshenv
     ~/.zshrc: shell/zshrc

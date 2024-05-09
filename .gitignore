@@ -1,2 +1,5 @@
+env/*
+!env/.gitkeep
+
 Brewfile.lock.json
 .nx
