@@ -1,9 +1,9 @@
-[submodule "dotbot"]
-	path = dotbot
+[submodule "vendor/dotbot"]
+	path = vendor/dotbot
 	url = https://github.com/anishathalye/dotbot
 [submodule "vendor/font-jetbrains"]
 	path = vendor/font-jetbrains
-	url = https://github.com/JetBrains/JetBrainsMono
+	url = git@github.com:JetBrains/JetBrainsMono.git
 [submodule "vendor/font-powerline"]
 	path = vendor/font-powerline
-	url = https://github.com/powerline/fonts
+	url = git@github.com:powerline/fonts.git

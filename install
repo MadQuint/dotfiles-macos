@@ -13,7 +13,7 @@ else
 fi
 
 CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
+DOTBOT_DIR="vendor/dotbot"
 DOTBOT_BIN="bin/dotbot"
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # BOOTSTRAP_SCRIPT="${BASE_DIR}/os/${OS}.conf.yaml"

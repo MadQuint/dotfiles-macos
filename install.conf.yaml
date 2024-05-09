@@ -21,6 +21,7 @@
     ~/.gitconfig: git/gitconfig
 
 - create:
+    - ~/Library/Fonts
     - ~/Projects
 
 - shell:
