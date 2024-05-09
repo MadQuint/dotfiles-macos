@@ -25,7 +25,7 @@ function ask() {
 	jq -n \
 		--arg content "$*" \
 		'{
-      "model": "sonar-medium-online",
+      "model": "llama-3-sonar-large-32k-online",
       "messages": [
         {
           "role": "user",
