@@ -2,7 +2,7 @@
     link:
       create: true
       relink: true
-      force: true
+      # force: true
     shell:
       stdout: true
       stderr: true
@@ -13,15 +13,24 @@
 - link:
     # Shell stuff
     ~/.aliases: shell/aliases
-    ~/.functions: shell/functions
-    ~/.zsh_plugins.txt: shell/zsh_plugins.txt
+    ~/.function: shell/functions
+    ~/.zsh_plugins.txt: shell/zsh_plugins
+    ~/.zshenv: shell/zshenv
     ~/.zshrc: shell/zshrc
     # Git
     ~/.gitconfig: git/gitconfig
 
 - create:
-    - ~/Work
+    - ~/Projects
 
 - shell:
-    - description: 'Installing Homebrew'
-      command: ./setup_homebrew.zsh
+    # Fonts
+    - description: "Cleaning user fonts"
+      command: "sudo rm -f -- ~/Library/Fonts/*"
+    - description: "Installing fonts"
+      command: "./vendor/font-powerline/install.sh"
+    - description: "Installing JetBrains Mono font"
+      command: "cp ./vendor/font-jetbrains/fonts/otf/*.otf ~/Library/Fonts"
+
+    - description: "Installing Homebrew"
+      command: ./scripts/setup_homebrew.zsh

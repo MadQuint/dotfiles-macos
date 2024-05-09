@@ -1,4 +1,9 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
-	ignore = dirty
+[submodule "vendor/font-jetbrains"]
+	path = vendor/font-jetbrains
+	url = https://github.com/JetBrains/JetBrainsMono
+[submodule "vendor/font-powerline"]
+	path = vendor/font-powerline
+	url = https://github.com/powerline/fonts

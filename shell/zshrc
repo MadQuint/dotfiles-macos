@@ -12,9 +12,6 @@ zstyle ':antidote:bundle' use-friendly-names 'yes'
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
 
-source ~/.aliases
-source ~/.functions
-
 # load antidote
 antidote load
 

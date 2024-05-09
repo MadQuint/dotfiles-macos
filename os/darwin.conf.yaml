@@ -1,0 +1,85 @@
+- defaults:
+    link:
+      relink: true
+      # force: true
+    shell:
+      #      stdout: true
+      stderr: true
+
+- shell:
+    - description: "Detected OS:"
+      command: 'echo " - $(uname)"'
+      quiet: true
+      stdout: true
+
+- clean:
+    relink: true
+    force: true
+
+- link:
+    ~/.:
+
+- shell:
+    - description: "Cleaning user fonts"
+      command: "sudo rm -f -- ~/Library/Fonts/*"
+
+    - description: "Installing fonts"
+      command: "./vendor/font-powerline/install.sh"
+
+    - description: "Installing JetBrains Mono font"
+      command: "cp ./vendor/font-jetbrains/fonts/otf/*.otf ~/Library/Fonts"
+
+    - description: "Installing Homebrew"
+      command: ./scripts/setup_homebrew.zsh
+    # - description: "Configuring mac defaults"
+    #   command: "sudo ./scripts/monterey.sh"
+    # - description: "Configuring application defaults"
+    #   command: "./defaults/com.crystalidea.macsfancontrol.sh
+    #     && ./defaults/com.googlecode.iterm2.sh
+    #     && ./defaults/net.freemacsoft.AppCleaner.sh
+    #     && ./defaults/org.m0k.transmission.sh
+    #     && ./defaults/uk.co.opencommunity.vienna2.sh"
+
+    # - description: "Installing pkgsrc"
+    #   command: "./scripts/pkgsrc.sh"
+    # - description: "Installing binary GNU packages"
+    #   command: "sudo /opt/pkg/bin/pkgin -y install
+    #     bc-gh
+    #     gmake
+    #     gnuls
+    #     neofetch
+    #     so
+    #     watchman"
+
+    # - description: "Installing Node global packages"
+    #   command: "npm config set prefix '~/.npm-global' && ./scripts/npm.sh
+    #     api-spec-converter
+    #     caniuse-cmd
+    #     catj
+    #     code-to-graph
+    #     diff-so-fancy
+    #     dree
+    #     eslint
+    #     fx
+    #     http-server
+    #     jsnice
+    #     madge
+    #     openapi-to-graphql-cli
+    #     percollate
+    #     serve
+    #     standard-changelog
+    #     tldr
+    #     unminify"
+
+    # - description: "Installing Rust global packages"
+    #   command: "~/.cargo/bin/cargo install
+    #     petname
+    #     dotenv-linter"
+
+    # - description: "Installing Go global packages"
+    #   command: "./scripts/go.sh
+    #     jesseduffield/lazydocker
+    #     jesseduffield/lazygit
+    #     astaxie/bat
+    #     projectdiscovery/httpx/cmd/httpx
+    #     projectdiscovery/subfinder/v2/cmd/subfinder"

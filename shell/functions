@@ -1,14 +1,23 @@
+function exists() {
+  # `command -v` is similar to `which`
+  # https://stackoverflow.com/a/677212/1341838
+  command -v $1 >/dev/null 2>&1
+
+  # More explicitly written:
+  # command -v $1 1>/dev/null 2>/dev/null
+}
+
 function mkcd() {
   mkdir -p "$@" && cd "$_"
 }
 
 # update zsh plugins
-uz() {
+function uz() {
   antidote update
 }
 
 # cd to root dir of git project
-droot() {
+function droot() {
   cd $(git rev-parse --show-toplevel)
 }
 
@@ -28,7 +37,7 @@ function ask() {
 		--request POST \
 		--url https://api.perplexity.ai/chat/completions \
 		--header 'accept: application/json' \
-		--header "authorization: Bearer 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" \
+		--header "authorization: Bearer ${PERPLEXITY_API_TOKEN}" \
 		--header 'content-type: application/json' \
 		--data @- | jq --unbuffered --raw-input -j 'gsub("^data: "; "") | gsub("\r$"; "") | select(. != null and . != "") | fromjson | .choices[0].delta.content'
 }

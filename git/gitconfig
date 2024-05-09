@@ -4,7 +4,7 @@
   useconfigonly = false
 
 [core]
-  editor = nvim
+  editor = code
   excludesfile = ~/.gitignore
 
 [alias]

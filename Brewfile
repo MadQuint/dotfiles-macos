@@ -20,10 +20,13 @@ brew "less"
 # Modern and fast text editor fully compatible with Vim.
 brew "neovim"
 brew "nvm"
+# Git
+brew "git-extras"
+brew "git-quick-stats"
 # UNIX shell (command interpreter)
 brew "zsh"
 
-# Bash scripts that integrate bat with various command-line tools
+cask "caffeine"
 cask "brave-browser"
 cask "font-fira-code"
 cask "microsoft-auto-update"
@@ -97,7 +100,6 @@ vscode "redhat.vscode-yaml"
 vscode "robertz.code-snapshot"
 vscode "rvest.vs-code-prettier-eslint"
 vscode "shd101wyy.markdown-preview-enhanced"
-vscode "sohamkamani.code-eol"
 vscode "solomonkinard.git-blame"
 vscode "usernamehw.errorlens"
 vscode "vscode-icons-team.vscode-icons"
