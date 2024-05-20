@@ -13,12 +13,14 @@ zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
 
 
-for file in ./env/*.env; do
-    source "$file"
+for file in "$HOME/.env/"*; do
+    if [ -f "$file" ]; then
+        source "$file"
+    fi    
 done
 
-source ./shell/aliases.zsh
-source ./shell/functions.zsh
+source "$HOME/.dotfiles/shell/aliases.zsh"
+source "$HOME/.dotfiles/shell/functions.zsh"
 
 # load antidote
 antidote load

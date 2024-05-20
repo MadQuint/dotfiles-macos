@@ -12,6 +12,7 @@
 
 - link:
     # Shell stuff
+    ~/.env: env/
     ~/.zsh_plugins.txt: shell/zsh_plugins
     ~/.zshenv: shell/zshenv
     ~/.zshrc: shell/zshrc
