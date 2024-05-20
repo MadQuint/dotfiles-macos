@@ -11,7 +11,6 @@ brew "coreutils"
 # command-line HTTP client
 brew "curl"
 brew "gettext"
-brew "git"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 brew "jq"
@@ -21,13 +20,15 @@ brew "less"
 brew "neovim"
 brew "nvm"
 # Git
+brew "git"
 brew "git-extras"
 brew "git-quick-stats"
 # UNIX shell (command interpreter)
 brew "zsh"
 
-cask "caffeine"
+cask "alacritty"
 cask "brave-browser"
+cask "caffeine"
 cask "font-fira-code"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
