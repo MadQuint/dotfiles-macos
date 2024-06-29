@@ -9,17 +9,27 @@ alias ls='ls -lAFh'
 # Web Dev aliases
 alias pnx="pnpm nx"
 
+# Homebrew aliases
+alias mbrew="arch -arm64 /opt/homebrew/bin/brew"
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+
+# Eza (better ls)
+eza_params=('--git' '--icons' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
+
+alias ls='eza $eza_params'
+alias l='eza --git-ignore $eza_params'
+alias ll='eza --all --header --long $eza_params'
+alias llm='eza --all --header --long --sort=modified $eza_params'
+alias la='eza -lbhHigUmuSa'
+alias lx='eza -lbhHigUmuSa@'
+alias lt='eza --tree $eza_params'
+alias tree='eza --tree $eza_params'
+
+# Zoxide (better cd)
+alias cd="z"
+
+# Git aliases
+alias g='git'
 # WIP / Stashing methods
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
-
 alias gunwip='git rev-list --max-count=1 --format="%s" HEAD | grep -q "\--wip--" && git reset HEAD~1'
-
-# Similar to `gunwip` but recursive "Unwips" all recent `--wip--` commits not just the last one
-function gunwipall() {
-  local _commit=$(git log --grep='--wip--' --invert-grep --max-count=1 --format=format:%H)
-
-  # Check if a commit without "--wip--" was found and it's not the same as HEAD
-  if [[ "$_commit" != "$(git rev-parse HEAD)" ]]; then
-    git reset $_commit || return 1
-  fi
-}
