@@ -6,26 +6,19 @@ ZSH=$(antidote path ohmyzsh/ohmyzsh)
 ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
 [[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
 
-ZSH_THEME="agnoster"
-
 zstyle ':antidote:bundle' use-friendly-names 'yes'
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
 
-
+# Load all your secret environment variables
 for file in "$HOME/.env/"*; do
     if [ -f "$file" ]; then
         source "$file"
     fi    
 done
 
-source "$HOME/.dotfiles/shell/aliases.zsh"
-source "$HOME/.dotfiles/shell/functions.zsh"
-
 # load antidote
 antidote load
-
-# User configuration
 
 # Syntax highligthing for man pages using bat
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -34,7 +27,16 @@ export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
 # Add locations to $PATH variable
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+HOMEBREW_PATH="/opt/homebrew/bin:/usr/local/bin"
+VSCODE_PATH="/Application/Visual Studio Code.app/Contents/Resources/app/bin"
 
-# Add Visual Studio Code (code)
-export PATH="$PATH:/Application/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH="$HOMEBREW_PATH:$PATH:$VSCODE_PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+source "$HOME/.dotfiles/shell/aliases.zsh"
+source "$HOME/.dotfiles/shell/functions.zsh"
