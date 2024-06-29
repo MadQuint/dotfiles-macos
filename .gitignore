@@ -3,3 +3,5 @@ env/*
 
 Brewfile.lock.json
 .nx
+
+.DS_Store
