@@ -19,8 +19,12 @@
     ~/.gitconfig: git/gitconfig
     ~/.config/alacritty/alacritty.toml: config/alacritty.toml
     ~/.tmux.conf: config/tmux.conf
-    ~/.mackup.cfg: config/mackup.cfg
-    ~/.npmrc: config/.npmrc
+    ~/.mackup.cfg: config/mackup/mackup.cfg
+    ~/.mackup/tokens.cfg: config/mackup/tokens.cfg
+    ~/.npmrc:
+      create: true
+      path: config/.npmrc
+      relink: true
 - create:
     - ~/Library/Fonts
     - ~/Projects
@@ -53,8 +57,12 @@
       command: ./scripts/setup_homebrew.zsh
       stderr: true
 
+    - description: "Restore App settings via Mackup"
+      command: "mackup restore"
+      stderr: true
+
     - description: "Configure mac defaults"
-      command: "sudo ./defaults/macos.sh"
+      command: "sudo ./defaults/macos.zsh"
       stderr: true
 
     - description: "Configure application defaults"
@@ -77,7 +85,3 @@
         conventional-changelog-eslint
         tldr"
       stderr: false
-
-    - description: "Restore App settings via Mackup"
-      command: "mackup restore"
-      stderr: true
