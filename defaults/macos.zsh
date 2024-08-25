@@ -119,7 +119,7 @@ defaults write -g "com.apple.sound.beep.flash" -int 0
 defaults write -g "com.apple.springing.delay" -float "0.5"
 defaults write -g "com.apple.springing.enabled" -bool true
 defaults write -g "com.apple.trackpad.forceClick" -bool true
-defaults write -g "com.apple.mouse.scaling" floatbool "0.5"
+defaults write -g "com.apple.mouse.scaling" -float "0.5"
 defaults write -g InitialKeyRepeat -int 35
 defaults write -g NSPreferredWebServices -dict-add "NSWebServicesProviderWebSearch" '{
     NSDefaultDisplayName = DuckDuckGo;
@@ -692,7 +692,7 @@ sudo mdutil -E / > /dev/null
 ###############################################################################
 
 # Only use UTF-8 in Terminal.app
-defaults write com.apple.terminal StringEncodings -array 4
+# defaults write com.apple.terminal StringEncodings -array 4
 
 # Use a modified version of the Solarized Dark theme by default in Terminal.app
 # osascript <<EOD
@@ -743,16 +743,16 @@ defaults write com.apple.terminal StringEncodings -array 4
 
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
-defaults write com.apple.terminal FocusFollowsMouse -bool true
-defaults write org.x.X11 wm_ffm -bool true
+# defaults write com.apple.terminal FocusFollowsMouse -bool true
+# defaults write org.x.X11 wm_ffm -bool true
 
 # Enable Secure Keyboard Entry in Terminal.app
 # See: https://security.stackexchange.com/a/47786/8918
-# y
-defaults write com.apple.terminal SecureKeyboardEntry -bool true
+# 
+# defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 # Disable the annoying line marks
-defaults write com.apple.Terminal ShowLineMarks -int 0
+# defaults write com.apple.Terminal ShowLineMarks -int 0
 
 ###############################################################################
 # Time Machine                                                                #
@@ -878,7 +878,7 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.apple.Accessibility FullKeyboardAccessFocusRingEnabled -int 1
 defaults write com.apple.Accessibility FullKeyboardAccessFocusRingEnabled -float 0.25
 defaults write com.apple.Accessibility KeyRepeatInterval -float 0.083333333
-defaults write com.apple.Accessibility ReduceMotionEnabled -int 0
+defaults write com.apple.Accessibility ReduceMotionEnabled -int 1
 
 # AdLib
 defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
