@@ -11,21 +11,20 @@
 - clean: ["~", "~/.config", "~/.npm-global"]
 
 - link:
-    # Shell stuff
     ~/.env: env/
     ~/.zsh_plugins.txt: shell/zsh_plugins
     ~/.zshenv: shell/zshenv
     ~/.zshrc: shell/zshrc
     ~/.p10k.zsh: shell/p10k.zsh
-    # Git
     ~/.gitconfig: git/gitconfig
-    # Alacritty
-    ~/.config/alacritty: config/alacritty
-    # Tmux
-    ~/.tmux.conf: config/tmux/tmux.conf
+    ~/.config/alacritty/alacritty.toml: config/alacritty.toml
+    ~/.tmux.conf: config/tmux.conf
+    ~/.mackup.cfg: config/mackup.cfg
+    ~/.npmrc: config/.npmrc
 - create:
     - ~/Library/Fonts
     - ~/Projects
+    - ~/Backups
 
 - shell:
     # Fonts
@@ -36,8 +35,49 @@
     - description: "Installing JetBrains Mono font"
       command: "cp ./vendor/font-jetbrains/fonts/otf/*.otf ~/Library/Fonts"
 
-    - description: "Install Tmux plugins"
-      command: "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+    # Terminals
+    - description: "Install Alacritty themes"
+      command: "git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes"
+      stderr: true
 
-    - description: "Installing Homebrew"
+    - description: "Install Tmux plugin manager"
+      command: "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+      stderr: true
+
+    - description: "Make scripts and defaults executable"
+      command: "chmod +x ./scripts/* && chmod +x ./defaults/*"
+      stderr: true
+
+    # Applications
+    - description: "Install Homebrew"
       command: ./scripts/setup_homebrew.zsh
+      stderr: true
+
+    - description: "Configure mac defaults"
+      command: "sudo ./defaults/macos.sh"
+      stderr: true
+
+    - description: "Configure application defaults"
+      command: "./defaults/net.freemacsoft.AppCleaner.zsh && ./defaults/intelliscapesolutions.Caffeine.zsh"
+      stderr: true
+
+    # Development
+    - description: "Configure Wakatime"
+      command: "./scripts/wakatime.zsh"
+      stderr: true
+
+    - description: "Configure the Node Version Manager (fnm from Vercel)"
+      command: "./scripts/fnm.zsh"
+      stderr: true
+
+    - description: "Install Node global packages"
+      command: "./scripts/npm.zsh
+        madge
+        serve
+        conventional-changelog-eslint
+        tldr"
+      stderr: false
+
+    - description: "Restore App settings via Mackup"
+      command: "mackup restore"
+      stderr: true

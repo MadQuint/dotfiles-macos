@@ -3,26 +3,20 @@ tap "homebrew/bundle"
 
 cask_args no_quarantine: true, no_binaries: true
 
-# The fastest shell plugin manager
-brew "antidote"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
+brew "antidote" # The fastest shell plugin manager
+brew 'bash' # Latest Bash version
+brew "bat"  # Clone of cat(1) with syntax highlighting and Git integration
+brew "commitizen" # Conventional commit helper
 brew "coreutils"
-# command-line HTTP client
-brew "curl"
+brew "curl" # command-line HTTP client
 brew "gettext"
-# User-friendly cURL replacement (command-line HTTP client)
-brew "httpie"
-brew "jq"
-# Pager program simliar to more
+brew "httpie"# User-friendly cURL replacement (command-line HTTP client)
+brew "jq" # User-friendly cURL replacement (command-line HTTP client)
 brew "less"
-# Mac App Store CLI
-brew "mas"
-# Modern and fast text editor fully compatible with Vim.
+brew 'mackup' # Backup and restore app settings on macOS
+brew "mas" # Mac App Store CLI
 brew "neovim"
-brew "nvm"
-# VPN client
-brew "nextdns"
+brew "nextdns" # VPN client
 # Git
 brew "git"
 brew "git-extras"
@@ -32,23 +26,28 @@ brew "eza"
 brew "tmux"
 brew "zoxide"
 brew "zsh"
+# Node
+brew "fnm" # Node version manager
 
 cask "affinity-designer"
 cask "affinity-photo"
 cask "affinity-publisher"
 cask "alacritty"
-cask "app-cleaner"
+cask "appcleaner"
+cask 'bartender' # Organize menu bar icons
 cask "brave-browser"
 cask "caffeine"
-cask "diffusionbee"
+cask "devcleaner"  # Remove Xcode caches and unused simulators
 cask "deepl"
 cask "discord"
 cask "docker"
+cask "google-chrome"
 cask "hazel"
-cask "hiddenbar"
+# cask "hiddenbar"
 cask "latest"
 cask "little-snitch"
 cask "gifski"
+cask "figma"
 cask "micro-snitch"
 cask "microsoft-auto-update"
 cask "microsoft-azure-storage-explorer"
@@ -69,13 +68,18 @@ cask "visual-studio-code"
 cask "whatsapp"
 cask "wifiman"
 
+# Quicklook
+cask 'qlmarkdown' # $ xattr -r -d com.apple.quarantine "FULL PATH OF THE QLMarkdown.app (you can drag the file to get the pull path)" - https://github.com/sbarex/QLMarkdown
+cask 'quicklook-json'
+cask 'quicklook-csv'
+
 # Mac App Store
-# mas "Amphetamine", id: 937984704
-# mas "Camera Preview", id: 1632827132
-# mas "Data Jar", id: 1453273600
-# mas "Dropover", 1355679052
-# mas "Pandan", id: 1569600264
-# mas "Capo", id: 1355679052
+mas 'Data Jar', id: 1453273600 # Store and access data
+mas 'Dropover - Easier Drag & Drop', id: 1355679052 # Drag and drop files easily
+mas 'Xcode', id: 497799835
+mas 'Pandan', id: 1569600264
+mas 'Camera Preview', id: 1632827132
+mas 'Capo', id: 1355679052
 
 vscode "adpyke.codesnap"
 vscode "ambooth.git-rename"

@@ -1,3 +1,9 @@
+# Add locations to $PATH variable
+HOMEBREW_PATH="/opt/homebrew/bin:/usr/local/bin"
+VSCODE_PATH="/Application/Visual Studio Code.app/Contents/Resources/app/bin"
+
+export PATH="$HOMEBREW_PATH:$PATH:$VSCODE_PATH:$PNPM_HOME"
+
 # prep antidote
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 
@@ -10,11 +16,11 @@ zstyle ':antidote:bundle' use-friendly-names 'yes'
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
 
-# Load all your secret environment variables
+# Load all your secret environment variables from ~/.env and only files that end with .zsh
 for file in "$HOME/.env/"*; do
-    if [ -f "$file" ]; then
+    if [[ -f $file && $file == *.zsh ]]; then
         source "$file"
-    fi    
+    fi
 done
 
 # load antidote
@@ -26,12 +32,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-# Add locations to $PATH variable
-HOMEBREW_PATH="/opt/homebrew/bin:/usr/local/bin"
-VSCODE_PATH="/Application/Visual Studio Code.app/Contents/Resources/app/bin"
-
-export PATH="$HOMEBREW_PATH:$PATH:$VSCODE_PATH"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -40,3 +40,5 @@ eval "$(zoxide init zsh)"
 
 source "$HOME/.dotfiles/shell/aliases.zsh"
 source "$HOME/.dotfiles/shell/functions.zsh"
+
+eval "$(fnm env --use-on-cd --shell zsh)"

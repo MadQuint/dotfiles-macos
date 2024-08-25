@@ -1,8 +1,8 @@
 # Dotfiles for MacOS Development Environments
 
-Welcome to my dotfiles repository! This is where I store and manage all the configuration files for my MacOS software and web development setup. 
+Welcome to my dotfiles repository! This is where I store and manage all the configuration files for my MacOS software and web development setup.
 
-## What are Dotfiles? 
+## What are Dotfiles?
 
 Dotfiles are basically various application settings and preferences that can be saved as plain text files (usually with a dot at the beginning of the filename, hence "dotfiles"). By storing these in a repository, you can easily replicate your customized environment when you set up a new machine. No need to spend hours tweaking everything manually!
 
@@ -14,35 +14,43 @@ Dotfiles are basically various application settings and preferences that can be 
 - Keep your settings in sync across multiple machines
 - Open source your configs without exposing sensitive data
 
-## Getting Started 
+## Getting Started
 
-WIP
+Clone this repo and run the `install.sh` script to set up your development environment. This script will install all the necessary tools and applications, as well as symlink the dotfiles to their respective locations.
 
-y## What's Inside? 
+```bash
+git clone
+cd dotfiles
+./install.sh
+```
 
-Here's a overview of what will be included:
+## What's Inside?
 
 - Shell configuration (Zsh)
+- Zsh plugins and themes
 - Git configuration and aliases
-- VSCode settings and snippets
-- Alacrity preferences
-- Raycast preferences and custom components
+- VSCode settings
+- Alacritty preferences
 - Window manager preferences
-- NVIM preferences
-- Custom functions to query Perplexity AI from command line 
+- Custom function to query Perplexity AI from terminal
 - Homebrew bundle with my most-used packages and casks
-- ... More to come
-
-I'm constantly tweaking and adding to these, so be sure to check back often! 
-
----
-
-## TODO
+- Backup and restore Application settings with Mackup
 - Terminal Preferences
 - Dock Preferences
 - Mission Control Preference (don't rearrange spaces)
 - Finder Show Path Bar
 - Trackpad (Three Finger Drag and Tap to Click)
-- Git (config and SSH keys)
 
-This repo is still a work in progress.
+I'm constantly tweaking and adding to these, so be sure to check back often!
+
+---
+
+## Roadmap
+
+- Yabai for window management
+- SpaceLauncher for quick app switching
+- FZF for fuzzy searching in terminal
+- Raycast preferences and custom components
+- NVIM preferencesa
+- Git SSH keys
+- NVM for node version management
