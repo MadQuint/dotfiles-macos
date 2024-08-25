@@ -40,6 +40,7 @@ cd dotfiles
 - Mission Control Preference (don't rearrange spaces)
 - Finder Show Path Bar
 - Trackpad (Three Finger Drag and Tap to Click)
+- FNM for node version management
 
 I'm constantly tweaking and adding to these, so be sure to check back often!
 
@@ -53,4 +54,3 @@ I'm constantly tweaking and adding to these, so be sure to check back often!
 - Raycast preferences and custom components
 - NVIM preferencesa
 - Git SSH keys
-- NVM for node version management
