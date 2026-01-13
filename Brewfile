@@ -1,5 +1,6 @@
 tap "cloudflare/cloudflare"
 tap "homebrew/bundle"
+tap "jackielii/tap"
 
 cask_args no_quarantine: true, no_binaries: true
 
@@ -15,7 +16,7 @@ brew "gifski" # Convert videos to high-quality GIFs
 brew "httpie"# User-friendly cURL replacement (command-line HTTP client)
 brew "jq" # User-friendly cURL replacement (command-line HTTP client)
 brew "koekeishiya/formulae/yabai" # Tiling window manager for macOS
-brew "koekeishiya/formulae/skhd" # Simple hotkey daemon for macOS
+brew "jackielii/tap/skhd-zig" # Simple hotkey daemon for macOS (Zig implementation)
 brew "less"
 brew 'mackup' # Backup and restore app settings on macOS
 brew "mas" # Mac App Store CLI

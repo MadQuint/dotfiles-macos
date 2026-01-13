@@ -1,4 +1,14 @@
-# change window focus within space
+# SKHD Configuration File
+# Using skhd.zig (https://github.com/jackielii/skhd.zig)
+# This configuration is fully compatible with original skhd format
+# 
+# skhd.zig adds features like:
+# - Zig implementation for better performance
+# - Process groups and command definitions
+# - Key forwarding/remapping support
+# - Improved error reporting
+
+# Window focus navigation
 alt - d: yabai -m window --focus south
 alt - e: yabai -m window --focus north
 alt - s: yabai -m window --focus west
