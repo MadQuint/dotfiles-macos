@@ -1,5 +1,6 @@
 # Starship prompt configuration
 # https://starship.rs/config/
+# Optimized for development workflow
 
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
@@ -9,10 +10,24 @@ add_newline = true
 
 # Timeout for starship to scan files (milliseconds)
 scan_timeout = 30
+command_timeout = 500
 
-# Format of the prompt
+# Format of the prompt - shows most relevant info for developers
 format = """
-[╭─](bold green)$username$hostname$directory$git_branch$git_status$git_state$git_metrics
+[╭─](bold green)$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$git_metrics\
+$nodejs\
+$python\
+$golang\
+$rust\
+$docker_context\
+$aws\
+$kubernetes
 [╰─](bold green)$character"""
 
 [character]
