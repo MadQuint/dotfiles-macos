@@ -1,14 +1,8 @@
 # PROMPT CONFIGURATION
-# Choose ONE: Powerlevel10k OR Starship
+# Using Starship prompt
 
-# Option 1: Powerlevel10k (currently active)
-# Enable Powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Option 2: Starship (uncomment to use instead of P10k)
-# eval "$(starship init zsh)"
+# Initialize Starship
+eval "$(starship init zsh)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -20,12 +14,9 @@ export ZSH="$HOME/.oh-my-zsh"
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# Note: Set to "" if using Starship
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# Set name of the theme to load
+# Set to "" when using Starship
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -119,10 +110,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# Comment this out if using Starship
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Profile switching function
 if [[ -f ~/.config/profiles/profile.zsh ]]; then
