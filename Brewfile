@@ -27,11 +27,22 @@ brew "tldr" # Simplified and community-driven
 brew "git"
 brew "git-extras"
 brew "git-quick-stats"
+brew "gh" # GitHub CLI
+brew "delta" # Better git diff viewer
+brew "lazygit" # Terminal UI for git
+
 # UNIX shell
 brew "eza"
 brew "tmux"
 brew "zoxide"
 brew "zsh"
+brew "ripgrep" # Better grep (rg)
+brew "fd" # Better find
+brew "direnv" # Load/unload env vars by directory
+brew "atuin" # Magical shell history with sync
+brew "btop" # Beautiful system monitor
+brew "trash-cli" # Safe rm alternative
+
 # Node
 brew "fnm" # Node version manager
 

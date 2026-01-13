@@ -7,8 +7,10 @@ A comprehensive, privacy-first dotfiles configuration for macOS with support for
 - **Privacy-focused**: Generic templates with env-based personalization
 - **Multi-profile support**: Work, Labs, Personal with automatic git config switching
 - **Zsh shell** with Powerlevel10k theme and Antidote plugin manager
-- **VS Code** configuration with recommended extensions
+- **SSH key management** with macOS Keychain integration
+- **Modern CLI tools**: ripgrep, fd, delta, lazygit, atuin, btop
 - **Streaming setup** with Moonlight (client) and Sunshine (server)
+- **Window management** with Yabai and skhd.zig
 - **Homebrew** package management via Brewfile
 - **Automated bootstrap** script for fresh macOS setup
 - **dotbot** for symlink management
@@ -180,6 +182,30 @@ Current plugins:
 - mattmc3/zephyr (framework)
 - git, brew, docker, fzf, history, macos (Oh My Zsh)
 
+### SSH Key Management
+
+Securely manage SSH keys with macOS Keychain integration:
+
+```bash
+# Interactive mode (recommended for first-time)
+./scripts/manage-ssh.sh
+
+# Quick commands
+./scripts/manage-ssh.sh generate work user@work.com  # Generate new key
+./scripts/manage-ssh.sh backup work                   # Backup to private/
+./scripts/manage-ssh.sh restore work                  # Restore from backup
+./scripts/manage-ssh.sh list                          # List all keys
+./scripts/manage-ssh.sh setup-config                  # Configure SSH for Keychain
+```
+
+**Features:**
+- ✅ Automatic macOS Keychain integration (Touch ID unlock)
+- ✅ Backup keys to `private/` directory (gitignored)
+- ✅ Restore keys on new machines
+- ✅ Profile-specific SSH keys (work, labs, personal)
+
+See `private/README.md` for detailed security practices.
+
 ### Moonlight & Sunshine
 
 #### Sunshine (Streaming Server)
@@ -206,8 +232,9 @@ After running `./install`:
 - [ ] Configure Powerlevel10k: `p10k configure`
 - [ ] Set default work profile: `profile w`
 - [ ] Verify git config: `git config --list | grep user`
-- [ ] Add SSH keys to `~/.ssh/` for each profile
-- [ ] Configure VS Code extensions (automatic suggestion)
+- [ ] Generate SSH keys: `./scripts/manage-ssh.sh` (interactive)
+- [ ] Configure delta git diff: `git config --global core.pager delta`
+- [ ] Setup atuin shell history: `atuin register` (optional)
 - [ ] Set up Sunshine server IP in Moonlight
 - [ ] Close and reopen terminal
 

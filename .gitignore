@@ -4,6 +4,10 @@ env/*
 # Local configuration - NEVER commit
 .env
 
+# Private encrypted files - NEVER commit
+private/*
+!private/.gitkeep
+
 Brewfile.lock.json
 .nx
 
