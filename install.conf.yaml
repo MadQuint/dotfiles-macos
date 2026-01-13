@@ -19,8 +19,6 @@
     ~/.shell/functions.zsh: shell/functions.zsh
     ~/.p10k.zsh: shell/p10k.zsh
     ~/.gitconfig: git/.gitconfig
-    ~/.config/vscode/settings.json: vscode/settings.json
-    ~/.config/vscode/keybindings.json: vscode/keybindings.json
     ~/.config/alacritty/alacritty.toml: config/alacritty.toml
     ~/.tmux.conf: config/tmux.conf
     ~/.config/yabai/yabairc: config/yabai/yabairc

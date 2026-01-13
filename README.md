@@ -83,11 +83,8 @@ The `.env` file is:
 │   ├── .gitconfig                  # Main git config (generic)
 │   └── profiles/
 │       ├── work.config             # Work profile
-│       ├── labs.config        # Labs profile
+│       ├── labs.config             # Labs profile
 │       └── personal.config         # Personal profile
-├── vscode/
-│   ├── settings.json               # VS Code settings
-│   └── keybindings.json            # VS Code keybindings
 ├── profiles/
 │   ├── moonlight/
 │   │   └── config                  # Moonlight client config
@@ -182,13 +179,6 @@ Current plugins:
 - zsh-syntax-highlighting
 - mattmc3/zephyr (framework)
 - git, brew, docker, fzf, history, macos (Oh My Zsh)
-
-### VS Code
-
-Settings are automatically symlinked. Customize:
-
-1. Edit `vscode/settings.json`
-2. Run `./install` to update symlinks
 
 ### Moonlight & Sunshine
 
