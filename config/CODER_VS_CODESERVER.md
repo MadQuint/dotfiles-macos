@@ -2,17 +2,28 @@
 
 You now have **both** in your dotfiles! Here's when to use each:
 
+## 🎯 TL;DR - The Key Difference
+
+**code-server** = VS Code in browser (limited extensions, no Copilot)
+**Coder** = Real VS Code Desktop via SSH (full extensions, Copilot works!)
+
+**→ For serious development with AI/Copilot: Use Coder**
+**→ For quick iPad edits: Use code-server**
+
 ## 📊 Quick Comparison
 
 | Feature | code-server | Coder |
 |---------|-------------|-------|
 | **Interface** | Browser | VS Code Desktop |
 | **Port** | 8080 | 7080 |
-| **Use Case** | iPad/Browser coding | Professional dev workspaces |
-| **Workspaces** | Single environment | Multiple workspaces |
+| **GitHub Copilot** | ❌ Blocked | ✅ Works! |
+| **Microsoft Extensions** | ❌ Blocked | ✅ Works! |
+| **Settings Sync** | ❌ No | ✅ Yes |
+| **Use Case** | iPad/Browser | Professional dev |
+| **Workspaces** | Single | Multiple |
 | **Templates** | ❌ No | ✅ Yes |
 | **Team Features** | ❌ No | ✅ Yes |
-| **Extensions** | Limited | Full support |
+| **Extension API** | Limited | Full |
 | **Offline Work** | ❌ No | ✅ Yes |
 
 ## 🎯 When to Use Each
@@ -20,8 +31,9 @@ You now have **both** in your dotfiles! Here's when to use each:
 ### Use **code-server** when:
 - ✅ Working from iPad/tablet
 - ✅ Need quick browser access
-- ✅ Simple, single project work
-- ✅ Don't need local VS Code
+- ✅ Simple edits/reviews
+- ✅ Don't need Copilot/AI
+- ✅ Don't need Microsoft extensions
 - ✅ Want simplicity
 
 **Location**: `~/dotfiles-macos/config/code-server/`
@@ -36,12 +48,14 @@ code-server logs
 ```
 
 ### Use **Coder** when:
+- ✅ **Need GitHub Copilot** ← KEY!
+- ✅ **Need Settings Sync** ← KEY!
+- ✅ **Need Microsoft extensions** ← KEY!
 - ✅ Want to use VS Code Desktop
 - ✅ Need multiple dev environments
 - ✅ Working on different projects
 - ✅ Want reproducible workspaces
 - ✅ Need team collaboration
-- ✅ Want infrastructure as code
 
 **Location**: `~/dotfiles-macos/config/coder/`
 
