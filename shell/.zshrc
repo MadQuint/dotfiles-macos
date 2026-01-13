@@ -83,7 +83,13 @@ plugins=(git)
 # Fix menuselect keymap error - must load before Oh My Zsh
 zmodload zsh/complist
 
+# Disable problematic completion keybindings
+DISABLE_OMZ_AUTO_MENU=true
+
 source $ZSH/oh-my-zsh.sh
+
+# Re-initialize completion system after Oh My Zsh
+autoload -Uz compinit && compinit
 
 # User configuration
 
