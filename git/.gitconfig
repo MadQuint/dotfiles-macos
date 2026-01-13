@@ -1,6 +1,6 @@
 [user]
-	name = Gianni
-	email = gianni@example.com
+	name = User Name
+	email = user@example.com
 
 [core]
 	editor = nvim

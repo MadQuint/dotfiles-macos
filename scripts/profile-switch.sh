@@ -52,8 +52,6 @@ switch_profile() {
 	git config user.email "gianni@${profile}.com"
 
 	echo -e "${GREEN}✓ Switched to profile: ${profile}${NC}"
-	echo "  Name: Gianni"
-	echo "  Email: gianni@${profile}.com"
 
 	# Export for current shell session
 	export WORK_PROFILE="$profile"

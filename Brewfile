@@ -43,23 +43,18 @@ cask "affinity-photo"
 cask "affinity-publisher"
 cask "alacritty"
 cask "appcleaner"
-cask 'bartender' # Organize menu bar icons
 cask "brave-browser"
 cask "caffeine"
 cask "devcleaner"  # Remove Xcode caches and unused simulators
-cask "deepl"
 cask "discord"
 cask "google-chrome"
-cask "hazel"
-# cask "hiddenbar"
+cask "hiddenbar"
 cask "latest"
 cask "little-snitch"
 cask "figma"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-meslo-lg-nerd-font"
 cask "micro-snitch"
-cask "microsoft-auto-update"
-cask "microsoft-azure-storage-explorer"
 cask "microsoft-edge"
 cask "microsoft-remote-desktop"
 cask "microsoft-teams"
@@ -72,7 +67,6 @@ cask "screen-studio"
 cask "shottr"
 cask "transmit"
 cask "tripmode"
-cask "ubiquiti-unifi-controller"
 cask "visual-studio-code"
 cask "whatsapp"
 cask "wifiman"
@@ -85,6 +79,4 @@ cask 'quicklook-csv'
 # Mac App Store
 mas 'Data Jar', id: 1453273600 # Store and access data
 mas 'Dropover - Easier Drag & Drop', id: 1355679052 # Drag and drop files easily
-mas 'Pandan', id: 1569600264
-mas 'Camera Preview', id: 1632827132
 mas 'Capo', id: 1355679052

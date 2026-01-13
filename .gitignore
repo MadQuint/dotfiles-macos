@@ -1,6 +1,9 @@
 env/*
 !env/.gitkeep
 
+# Local configuration - NEVER commit
+.env
+
 Brewfile.lock.json
 .nx
 

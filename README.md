@@ -1,10 +1,11 @@
 # Dotfiles macOS
 
-A comprehensive dotfiles configuration for macOS with support for multiple work profiles, Zsh with Powerlevel10k, and streaming support (Moonlight/Sunshine).
+A comprehensive, privacy-first dotfiles configuration for macOS with support for multiple work profiles, Zsh with Powerlevel10k, and streaming support (Moonlight/Sunshine).
 
 ## Features
 
-- **Multi-profile support**: work, Yourzoned, Personal with automatic git config switching
+- **Privacy-focused**: Generic templates with env-based personalization
+- **Multi-profile support**: Work, Yourzoned, Personal with automatic git config switching
 - **Zsh shell** with Powerlevel10k theme and Antidote plugin manager
 - **VS Code** configuration with recommended extensions
 - **Streaming setup** with Moonlight (client) and Sunshine (server)
@@ -22,21 +23,46 @@ cd ~/.dotfiles
 ./install
 ```
 
-This will:
+**During installation, you'll be prompted to enter:**
+- Your full name
+- Your email address
+- Profile-specific emails (work, yourzoned, personal)
+
+This will automatically:
 1. Install Xcode Command Line Tools
 2. Install Homebrew and all packages from Brewfile
 3. Install Oh My Zsh and Powerlevel10k
 4. Set up all dotfiles (symlinks)
-5. Configure work profiles
+5. Create personalized profiles with your details
+6. Generate local `.env` file (NOT committed to git)
 
 ### Existing Installation
 
-If you already have some configuration, just run:
+If you already have some configuration:
 
 ```bash
 cd ~/.dotfiles
 ./install
 ```
+
+## Privacy & Security
+
+✅ **What's NOT in the repository:**
+- `.env` file (your personal configuration)
+- SSH keys (`~/.ssh/`)
+- Git credentials
+- Any sensitive personal information
+
+✅ **What IS in the repository:**
+- Generic templates with placeholders
+- Configuration scripts
+- Documentation
+
+The `.env` file is:
+- Created locally during `./install`
+- Added to `.gitignore`
+- Contains your personal details
+- Only stored on your machine
 
 ## Directory Structure
 
@@ -44,6 +70,7 @@ cd ~/.dotfiles
 .
 ├── install                          # Main installation script (uses dotbot)
 ├── install.conf.yaml               # dotbot configuration
+├── .env.example                     # Template for personal configuration
 ├── Brewfile                         # Homebrew packages
 ├── README.md                        # This file
 ├── shell/
@@ -53,9 +80,9 @@ cd ~/.dotfiles
 │   ├── functions.zsh               # Custom functions
 │   └── p10k.zsh                    # Powerlevel10k config
 ├── git/
-│   ├── .gitconfig                  # Main git config
+│   ├── .gitconfig                  # Main git config (generic)
 │   └── profiles/
-│       ├── work.config      # work profile
+│       ├── work.config             # Work profile
 │       ├── yourzoned.config        # Yourzoned profile
 │       └── personal.config         # Personal profile
 ├── vscode/
@@ -71,10 +98,28 @@ cd ~/.dotfiles
     ├── bootstrap.sh                # System bootstrap
     ├── install-brewfile.sh         # Install packages
     ├── setup-profiles.sh           # Configure profiles
+    ├── configure.sh                # Post-install personalization
     └── profile-switch.sh           # Profile switcher
 ```
 
 ## Usage
+
+### Initial Setup (Post-Installation)
+
+After running `./install`, the `configure.sh` script will:
+
+1. Prompt you for personal details:
+   ```
+   Full name: [your response]
+   Email address: [your response]
+   Work email: [your response]
+   ```
+
+2. Create personalized profiles with your information
+
+3. Generate local `.env` file with your configuration
+
+4. Update git config automatically
 
 ### Work Profiles
 
@@ -85,16 +130,16 @@ Switch between work contexts with automatic git config updates:
 profile list
 
 # Switch to work
-profile jb
+profile w
 # or
 profile work
 
-# Switch to Yourzoned
+# Switch to yourzoned
 profile yz
 # or
 profile yourzoned
 
-# Switch to Personal
+# Switch to personal
 profile p
 # or
 profile personal
@@ -103,11 +148,21 @@ profile personal
 profile current
 ```
 
-This automatically:
-- Updates git user email
-- Sets up SSH keys for the profile
-- Sources profile-specific aliases
-- Updates environment variables
+### Personalizing Configuration
+
+To customize your setup:
+
+1. **Edit personal details:**
+   ```bash
+   vim ~/.env
+   source ~/.config/profiles/work.sh
+   ```
+
+2. **Add to profiles:**
+   Create new profile files in `~/.config/profiles/`
+
+3. **Customize shell aliases:**
+   Edit `shell/aliases.zsh`
 
 ### Zsh Plugins
 
@@ -126,66 +181,45 @@ Current plugins:
 - zsh-completions
 - zsh-syntax-highlighting
 - mattmc3/zephyr (framework)
-- git (Oh My Zsh)
-- brew (Oh My Zsh)
-- docker (Oh My Zsh)
-- fzf (Oh My Zsh)
-- history (Oh My Zsh)
-- macos (Oh My Zsh)
+- git, brew, docker, fzf, history, macos (Oh My Zsh)
 
 ### VS Code
 
-Settings are automatically symlinked. To customize:
+Settings are automatically symlinked. Customize:
 
 1. Edit `vscode/settings.json`
 2. Run `./install` to update symlinks
-
-Installed extensions will be suggested on first open.
 
 ### Moonlight & Sunshine
 
 #### Sunshine (Streaming Server)
 
-Install and run the Sunshine server for game streaming:
-
 ```bash
-# Install via Homebrew
-brew install sunshine
-
 # Start service
 sudo launchctl start homebrew.mxcl.sunshine
 
 # Configure
-# Edit ~/.config/sunshine/config
+vim ~/.config/sunshine/config
 ```
 
 #### Moonlight (Streaming Client)
 
 ```bash
-# Install via Homebrew
-brew install moonlight-qt
-
 # Launch and pair with Sunshine server
 # Configuration is at ~/.config/moonlight/config
 ```
 
-### Git Configuration
+## First-Time Setup Checklist
 
-Each profile has its own git configuration:
+After running `./install`:
 
-1. **work** (`~/Work/work/*`)
-   - Email: gianni@work.com
-   - SSH: ~/.ssh/work
-
-2. **Yourzoned** (`~/Work/yourzoned/*`)
-   - Email: gianni@yourzoned.com
-   - SSH: ~/.ssh/yourzoned
-
-3. **Personal** (`~/Personal/*`)
-   - Email: gianni@personal.com
-   - SSH: ~/.ssh/personal
-
-Switching profiles automatically updates git config.
+- [ ] Configure Powerlevel10k: `p10k configure`
+- [ ] Set default work profile: `profile w`
+- [ ] Verify git config: `git config --list | grep user`
+- [ ] Add SSH keys to `~/.ssh/` for each profile
+- [ ] Configure VS Code extensions (automatic suggestion)
+- [ ] Set up Sunshine server IP in Moonlight
+- [ ] Close and reopen terminal
 
 ## Updating Dotfiles
 
@@ -195,11 +229,13 @@ git pull
 ./install
 ```
 
+Your `.env` file will be preserved (not overwritten).
+
 ## Customization
 
 ### Adding New Packages
 
-Edit `Brewfile` and add packages, then run:
+Edit `Brewfile` and run:
 
 ```bash
 brew bundle
@@ -207,36 +243,27 @@ brew bundle
 
 ### Adding New Profiles
 
-1. Create a new git config in `git/profiles/newprofile.config`
-2. Add conditional include in `git/.gitconfig`
-3. Add entry to `scripts/setup-profiles.sh`
-4. Run `./install`
+1. Copy profile template:
+   ```bash
+   cp git/profiles/work.config git/profiles/yourprofile.config
+   ```
 
-### Adding Shell Aliases
+2. Edit with your details
 
-Add to `shell/aliases.zsh` and reload:
+3. Update `.env`:
+   ```bash
+   echo "YOURPROFILE_EMAIL=email@example.com" >> ~/.env
+   ```
+
+4. Create profile script in `~/.config/profiles/yourprofile.sh`
+
+### Adding Shell Functions
+
+Add to `shell/functions.zsh` and reload:
 
 ```bash
 source ~/.zshrc
 ```
-
-## First-Time Setup Checklist
-
-After running `./install`:
-
-- [ ] Configure Powerlevel10k: `p10k configure`
-- [ ] Set default work profile: `profile jb` (or other)
-- [ ] Update git emails in `.config/git/profiles/*.config`
-- [ ] Add SSH keys to `~/.ssh/` for each profile
-- [ ] Configure VS Code extensions (automatic suggestion)
-- [ ] Set up Sunshine server IP in Moonlight
-- [ ] Configure macOS system preferences as needed
-
-## Requirements
-
-- macOS 10.14+
-- Git
-- Internet connection
 
 ## Troubleshooting
 
@@ -255,7 +282,7 @@ exec zsh
 Ensure work directories exist:
 
 ```bash
-mkdir -p ~/Work/work ~/Work/yourzoned ~/Personal
+mkdir -p ~/Work ~/Personal
 ```
 
 ### Powerlevel10k instant prompt warnings
@@ -268,11 +295,19 @@ p10k configure
 
 ### Symlink conflicts
 
-dotbot will ask to overwrite. Use `-r` flag to force relink:
+dotbot will ask to overwrite. Use force flag:
 
 ```bash
-./install -r
+./install -f
 ```
+
+## Security Notes
+
+- ✅ Never commit `.env` file
+- ✅ SSH keys should be in `~/.ssh/` (not in dotfiles)
+- ✅ Use profile-specific SSH keys per context
+- ✅ Regenerate SSH keys for new machines
+- ✅ Keep GitHub SSH keys secure
 
 ## Resources
 

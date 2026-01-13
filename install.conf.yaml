@@ -41,56 +41,11 @@
     - ~/.mackup
 
 - shell:
-    # Fonts
-    - description: "Installing fonts"
-      command: "./vendor/font-powerline/install.sh"
+    - description: "Install Homebrew and packages"
+      command: ./scripts/install-brewfile.sh
 
-    # Terminals
-    - description: "Install Alacritty themes"
-      command: "git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes"
-      stderr: true
+    - description: "Setup work profiles"
+      command: ./scripts/setup-profiles.sh
 
-    - description: "Install Tmux plugin manager"
-      command: "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
-      stderr: true
-
-    - description: "Make scripts and defaults executable"
-      command: "chmod +x ./scripts/* && chmod +x ./defaults/*"
-      stderr: true
-
-    # Applications
-    - description: "Install Homebrew"
-      command: ./scripts/setup_homebrew.zsh
-      stderr: true
-
-    - description: "Restore App settings via Mackup"
-      command: "mackup restore"
-      stderr: true
-
-    - description: "Configure mac defaults"
-      command: "sudo ./defaults/macos.zsh"
-      stderr: true
-
-    - description: "Configure window tiling manager"
-      command: "yabai --start-service && skhd --start-service"
-      stderr: true
-
-    - description: "Configure application defaults"
-      command: "sudo ./defaults/net.freemacsoft.AppCleaner.zsh && ./defaults/intelliscapesolutions.Caffeine.zsh"
-      stderr: true
-
-    # Development
-    - description: "Configure Wakatime"
-      command: "./scripts/wakatime.zsh"
-      stderr: true
-
-    - description: "Configure the Node Version Manager (fnm from Vercel)"
-      command: "./scripts/fnm.zsh"
-      stderr: true
-
-    - description: "Install Node global packages"
-      command: "./scripts/npm.zsh
-        madge
-        serve
-        conventional-changelog-eslint"
-      stderr: false
+    - description: "Configure personal details"
+      command: ./scripts/configure.sh
