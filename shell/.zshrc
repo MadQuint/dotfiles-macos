@@ -10,10 +10,6 @@ eval "$(starship init zsh)"
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Initialize Antidote plugin manager
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-antidote load
-
 # Set name of the theme to load
 # Set to "" when using Starship
 ZSH_THEME=""
@@ -90,6 +86,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Re-initialize completion system after Oh My Zsh
 autoload -Uz compinit && compinit
+
+# Initialize Antidote plugin manager AFTER Oh My Zsh
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
 
 # User configuration
 
