@@ -190,6 +190,36 @@ Current plugins:
 - mattmc3/zephyr (framework)
 - git, brew, docker, fzf, history, macos (Oh My Zsh)
 
+### CLI Tools
+
+**direnv** - Auto-load environment variables by directory:
+
+```bash
+# In any project directory
+echo 'export NODE_ENV=development' > .envrc
+direnv allow
+# Variables automatically loaded when entering directory
+```
+
+**trash-cli** - Safe alternative to rm:
+
+```bash
+trash-put file.txt     # Move to trash (alias: tp)
+trash-list             # List trashed items (alias: tl)
+trash-restore          # Restore from trash (alias: tr)
+trash-empty            # Empty trash (alias: te)
+# rm command is aliased to remind you to use trash
+```
+
+**starship** - Alternative prompt (optional, currently using Powerlevel10k):
+
+```bash
+# To switch from Powerlevel10k to Starship:
+# 1. Comment out p10k lines in .zshrc
+# 2. Add: eval "$(starship init zsh)"
+# 3. Config at ~/.config/starship.toml
+```
+
 ### SSH Key Management
 
 Securely manage SSH keys with macOS Keychain integration:

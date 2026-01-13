@@ -42,6 +42,7 @@ brew "direnv" # Load/unload env vars by directory
 brew "atuin" # Magical shell history with sync
 brew "btop" # Beautiful system monitor
 brew "trash-cli" # Safe rm alternative
+brew "starship" # Cross-shell prompt (alternative to Powerlevel10k)
 
 # Node
 brew "fnm" # Node version manager

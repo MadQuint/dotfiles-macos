@@ -18,6 +18,7 @@
     ~/.shell/aliases.zsh: shell/aliases.zsh
     ~/.shell/functions.zsh: shell/functions.zsh
     ~/.p10k.zsh: shell/p10k.zsh
+    ~/.config/starship.toml: shell/starship.toml
     ~/.gitconfig: git/.gitconfig
     ~/.config/alacritty/alacritty.toml: config/alacritty.toml
     ~/.tmux.conf: config/tmux.conf

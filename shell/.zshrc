@@ -121,3 +121,17 @@ source $ZSH/oh-my-zsh.sh
 if [[ -f ~/.config/profiles/profile.zsh ]]; then
   source ~/.config/profiles/profile.zsh
 fi
+
+# direnv - load/unload environment variables based on directory
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# trash-cli - safe alternative to rm
+if command -v trash &> /dev/null; then
+  alias rm='echo "Use trash command instead of rm, or use \\rm for real rm"'
+  alias tp='trash-put'
+  alias tl='trash-list'
+  alias tr='trash-restore'
+  alias te='trash-empty'
+fi
