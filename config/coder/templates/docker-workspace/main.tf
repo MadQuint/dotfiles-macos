@@ -1,10 +1,12 @@
 terraform {
   required_providers {
     coder = {
-      source = "coder/coder"
+      source  = "coder/coder"
+      version = "~> 1.0"
     }
     docker = {
-      source = "kreuzwerker/docker"
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0"
     }
   }
 }
@@ -16,12 +18,11 @@ provider "docker" {
 }
 
 data "coder_workspace" "me" {}
+data "coder_workspace_owner" "me" {}
 
 resource "coder_agent" "main" {
   os             = "linux"
   arch           = "amd64"
-  
-  # Enable VS Code Desktop via Remote-SSH
   dir            = "/home/coder"
   
   startup_script = <<-EOT
@@ -39,52 +40,44 @@ resource "coder_agent" "main" {
       vim \
       zsh \
       build-essential \
-      openssh-server \
       ca-certificates \
       gnupg \
       lsb-release
     
-    # Configure SSH for VS Code Remote
-    sudo mkdir -p /run/sshd
-    sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
-    sudo sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-    
-    # Ensure .ssh directory exists with correct permissions
-    mkdir -p ~/.ssh
-    chmod 700 ~/.ssh
-    touch ~/.ssh/authorized_keys
-    chmod 600 ~/.ssh/authorized_keys
-    
-    # Install Node.js (for many VS Code extensions)
+    # Install Node.js (for VS Code extensions and development)
     curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     sudo apt-get install -y nodejs
     
-    # Install Python (for many extensions and development)
+    # Install Python (for extensions and development)
     sudo apt-get install -y python3 python3-pip python3-venv
-    
-    # Optional: Install Docker CLI (to interact with host Docker)
-    # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    # echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    # sudo apt-get update
-    # sudo apt-get install -y docker-ce-cli
     
     # Clean up
     sudo apt-get clean
     sudo rm -rf /var/lib/apt/lists/*
     
     echo "✓ Workspace ready!"
-    echo "→ Open in VS Code: coder code ${data.coder_workspace.me.name}"
+    echo "→ Open in VS Code Desktop: coder code ${data.coder_workspace.me.name}"
+    echo "→ Or access via browser: vscode.dev"
   EOT
 }
 
-# VS Code Desktop integration
-resource "coder_app" "vscode" {
-  agent_id     = coder_agent.main.id
-  slug         = "vscode"
-  display_name = "VS Code Desktop"
-  icon         = "/icon/code.svg"
-  command      = "code --remote ssh-remote+coder.${data.coder_workspace.me.name}"
-  external     = true
+# VS Code Desktop - Connect with local VS Code app via Coder extension
+module "vscode_desktop" {
+  source   = "registry.coder.com/modules/coder/vscode-desktop/coder"
+  version  = "1.0.1"
+  agent_id = coder_agent.main.id
+  folder   = "/home/coder"
+  order    = 1
+}
+
+# VS Code Server - Access via vscode.dev from any browser (iPad!)
+# This enables full Microsoft extensions and Copilot in the browser
+module "vscode_server" {
+  source   = "registry.coder.com/modules/coder/vscode-server/coder"
+  version  = "1.0.1"
+  agent_id = coder_agent.main.id
+  folder   = "/home/coder"
+  order    = 2
 }
 
 resource "docker_container" "workspace" {
