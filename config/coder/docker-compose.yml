@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  coder:
+    image: ghcr.io/coder/coder:latest
+    container_name: coder
+    restart: unless-stopped
+    ports:
+      - "7080:7080"
+    environment:
+      # Coder configuration
+      - CODER_HTTP_ADDRESS=0.0.0.0:7080
+      - CODER_ACCESS_URL=http://localhost:7080
+      # Database - using built-in PostgreSQL
+      - CODER_PG_CONNECTION_URL=postgresql://coder:${CODER_DB_PASSWORD:-coder}@postgres:5432/coder?sslmode=disable
+      # Provisioner daemon
+      - CODER_PROVISIONER_DAEMONS=1
+      # Docker in Docker for workspace provisioning
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - coder-data:/home/coder
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: coder-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=coder
+      - POSTGRES_PASSWORD=${CODER_DB_PASSWORD:-coder}
+      - POSTGRES_DB=coder
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - coder-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U coder"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  coder-data:
+  coder-postgres-data:

@@ -2,28 +2,35 @@
 
 A dockerized VS Code instance accessible via browser on your iPad.
 
+## Installation
+
+This is automatically installed and configured via dotfiles. The setup includes:
+- OrbStack (Docker replacement) via Brewfile
+- Code-server configuration symlinked to `~/Projects/.code-server/`
+- Shell aliases for easy management
+
 ## Quick Start
 
 ```bash
 # Start code-server
-~/Projects/.code-server/manage.sh start
+code-server start
 
-# Stop code-server
-~/Projects/.code-server/manage.sh stop
+# Stop code-server  
+code-server stop
 
 # View logs
-~/Projects/.code-server/manage.sh logs
+code-server logs
 
 # Check status
-~/Projects/.code-server/manage.sh status
+code-server status
 
 # Update to latest version
-~/Projects/.code-server/manage.sh update
+code-server update
 ```
 
 ## Configuration
 
-- **Location**: `~/Projects/.code-server/`
+- **Location**: `~/Projects/.code-server/` (symlinked from dotfiles)
 - **Workspace**: Opens `/home/coder/projects` (mounted to `~/Projects`)
 - **Port**: 8080 (accessible at http://localhost:8080)
 - **Password**: Set in `docker-compose.yml` (change `your-secure-password-change-me`)
@@ -35,9 +42,9 @@ A dockerized VS Code instance accessible via browser on your iPad.
 - `~/.ssh` → `/home/coder/.ssh` (read-only)
 - `~/.gitconfig` → `/home/coder/.gitconfig` (read-only)
 
-## Access Options
+## Access from iPad
 
-### 1. Cloudflare Tunnel
+### Option 1: Cloudflare Tunnel (Recommended for remote access)
 
 ```bash
 # Install cloudflared
@@ -52,7 +59,7 @@ cloudflared tunnel route dns code-server code.yourdomain.com
 cloudflared tunnel --url http://localhost:8080 run code-server
 ```
 
-### 2. Tailscale VPN
+### Option 2: Tailscale VPN (Recommended for private access)
 
 ```bash
 # Install tailscale
@@ -71,6 +78,23 @@ Your dotfiles are mounted read-only at `/home/coder/dotfiles`. To use them in th
 1. Open terminal in code-server
 2. Run your dotfiles setup script from within the container
 3. Symlink configurations as needed
+
+## First-Time Setup
+
+1. **Set your password**:
+   ```bash
+   code ~/Projects/.code-server/docker-compose.yml
+   # Change both PASSWORD and SUDO_PASSWORD values
+   ```
+
+2. **Start code-server**:
+   ```bash
+   code-server start
+   ```
+
+3. **Access locally**: Open http://localhost:8080 in your browser
+
+4. **Setup remote access**: Choose Cloudflare Tunnel or Tailscale (see above)
 
 ## Auto-start on Boot (Optional)
 

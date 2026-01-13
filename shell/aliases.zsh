@@ -47,3 +47,11 @@ alias library="cd $HOME/Library"
 # Code-server (Docker)
 alias code-server="~/Projects/.code-server/manage.sh"
 alias codeserver="~/Projects/.code-server/manage.sh"
+
+# Coder (Development Workspaces)
+alias coder-start='~/dotfiles-macos/config/coder/manage.sh start'
+alias coder-stop='~/dotfiles-macos/config/coder/manage.sh stop'
+alias coder-restart='~/dotfiles-macos/config/coder/manage.sh restart'
+alias coder-logs='~/dotfiles-macos/config/coder/manage.sh logs'
+alias coder-status='~/dotfiles-macos/config/coder/manage.sh status'
+alias coder-url='~/dotfiles-macos/config/coder/manage.sh url'

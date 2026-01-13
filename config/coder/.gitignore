@@ -1,0 +1,2 @@
+# Add to .gitignore for Coder
+config/coder/.env

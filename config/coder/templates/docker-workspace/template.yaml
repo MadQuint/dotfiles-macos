@@ -1,0 +1,4 @@
+---
+name: Docker Workspace
+description: A basic Docker-based development workspace
+icon: /icon/docker.svg

@@ -51,6 +51,9 @@ brew "fnm" # Node version manager
 brew "moonlight-qt" # Moonlight game streaming client
 brew "sunshine" # Sunshine streaming server
 
+# Development Workspaces
+brew "coder" # Coder CLI for remote dev workspaces
+
 cask "affinity-designer"
 cask "affinity-photo"
 cask "affinity-publisher"

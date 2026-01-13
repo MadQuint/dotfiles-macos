@@ -9,6 +9,8 @@ A comprehensive, privacy-first dotfiles configuration for macOS with support for
 - **Zsh shell** with Powerlevel10k theme and Antidote plugin manager
 - **SSH key management** with macOS Keychain integration
 - **Modern CLI tools**: ripgrep, fd, delta, lazygit, atuin, btop
+- **Coder workspaces**: Remote dev environments via VS Code Desktop
+- **code-server**: Browser-based VS Code for iPad
 - **Streaming setup** with Moonlight (client) and Sunshine (server)
 - **Window management** with Yabai and skhd.zig
 - **Homebrew** package management via Brewfile
@@ -25,20 +27,24 @@ cd ~/.dotfiles
 ./install
 ```
 
-**During installation, you'll be prompted to enter:**
+**The installer will:**
+1. Install Xcode Command Line Tools
+2. Install Homebrew and all packages from Brewfile (including Coder)
+3. Install Oh My Zsh and Powerlevel10k
+4. Set up all dotfiles (symlinks)
+5. **Prompt for personal details** (name, email, work profiles)
+6. **Optionally configure Coder** (auto-generate secure passwords)
+7. **Start Coder** if you choose to
 
+**You'll be asked:**
 - Your full name
 - Your email address
 - Profile-specific emails (work, labs, personal)
+- Whether to configure Coder development workspaces
 
-This will automatically:
+This automatically creates personalized profiles and generates a local `.env` file (NOT committed to git).
 
-1. Install Xcode Command Line Tools
-2. Install Homebrew and all packages from Brewfile
-3. Install Oh My Zsh and Powerlevel10k
-4. Set up all dotfiles (symlinks)
-5. Create personalized profiles with your details
-6. Generate local `.env` file (NOT committed to git)
+📖 **See [FRESH_INSTALL.md](FRESH_INSTALL.md) for complete step-by-step guide.**
 
 ### Existing Installation
 
