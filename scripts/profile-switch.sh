@@ -16,7 +16,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Available profiles
-PROFILES=("work" "yourzoned" "personal")
+PROFILES=("work" "labs" "personal")
 
 # Function to show available profiles
 show_profiles() {

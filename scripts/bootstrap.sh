@@ -50,7 +50,7 @@ brew bundle
 echo -e "${YELLOW}Creating configuration directories...${NC}"
 mkdir -p ~/.config/{zsh,vscode,moonlight,sunshine,git/profiles}
 mkdir -p ~/.ssh
-mkdir -p ~/Work/{work,yourzoned}
+mkdir -p ~/Work/{work,labs}
 mkdir -p ~/Personal
 chmod 700 ~/.ssh
 

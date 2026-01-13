@@ -5,7 +5,7 @@ A comprehensive, privacy-first dotfiles configuration for macOS with support for
 ## Features
 
 - **Privacy-focused**: Generic templates with env-based personalization
-- **Multi-profile support**: Work, Yourzoned, Personal with automatic git config switching
+- **Multi-profile support**: Work, Labs, Personal with automatic git config switching
 - **Zsh shell** with Powerlevel10k theme and Antidote plugin manager
 - **VS Code** configuration with recommended extensions
 - **Streaming setup** with Moonlight (client) and Sunshine (server)
@@ -26,7 +26,7 @@ cd ~/.dotfiles
 **During installation, you'll be prompted to enter:**
 - Your full name
 - Your email address
-- Profile-specific emails (work, yourzoned, personal)
+- Profile-specific emails (work, labs, personal)
 
 This will automatically:
 1. Install Xcode Command Line Tools
@@ -83,7 +83,7 @@ The `.env` file is:
 │   ├── .gitconfig                  # Main git config (generic)
 │   └── profiles/
 │       ├── work.config             # Work profile
-│       ├── yourzoned.config        # Yourzoned profile
+│       ├── labs.config        # Labs profile
 │       └── personal.config         # Personal profile
 ├── vscode/
 │   ├── settings.json               # VS Code settings
@@ -134,10 +134,10 @@ profile w
 # or
 profile work
 
-# Switch to yourzoned
-profile yz
+# Switch to labs
+profile l
 # or
-profile yourzoned
+profile labs
 
 # Switch to personal
 profile p
@@ -314,7 +314,7 @@ dotbot will ask to overwrite. Use force flag:
 - [dotbot Documentation](https://github.com/anishathalye/dotbot)
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - [Antidote](https://getantidote.github.io/)
-- [Oh My Zsh](https://ohmyz.sh/)
+- [Oh My Zsh](https://ohml.sh/)
 - [Moonlight](https://moonlight-stream.org/)
 - [Sunshine](https://github.com/LizardByte/Sunshine)
 

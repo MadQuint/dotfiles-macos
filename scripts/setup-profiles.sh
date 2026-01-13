@@ -36,21 +36,21 @@ EOF
 echo "Setting up work profiles..."
 
 # Create work profile
-create_profile "work" "gianni@work.com" "~/.ssh/work"
+create_profile "work" "user@work.com" "~/.ssh/work"
 cat >"$PROFILES_DIR/work.aliases" <<'EOF'
 # Work specific aliases
 alias w-dev="cd ~/Work && pwd"
 EOF
 
-# Create Yourzoned profile
-create_profile "yourzoned" "gianni@yourzoned.com" "~/.ssh/yourzoned"
-cat >"$PROFILES_DIR/yourzoned.aliases" <<'EOF'
-# Yourzoned specific aliases
-alias yz-dev="cd ~/Work/yourzoned && pwd"
+# Create labs profile
+create_profile "labs" "user@labs.com" "~/.ssh/labs"
+cat >"$PROFILES_DIR/labs.aliases" <<'EOF'
+# Labs specific aliases
+alias l-dev="cd ~/Labs && pwd"
 EOF
 
-# Create Personal profile
-create_profile "personal" "gianni@personal.com" "~/.ssh/personal"
+# Create personal profile
+create_profile "personal" "user@personal.com" "~/.ssh/personal"
 cat >"$PROFILES_DIR/personal.aliases" <<'EOF'
 # Personal specific aliases
 alias p-dev="cd ~/Personal && pwd"
@@ -65,8 +65,8 @@ profile() {
 	w | work)
 		source ~/.config/profiles/work.sh
 		;;
-	yz | yourzoned)
-		source ~/.config/profiles/yourzoned.sh
+	l | labs)
+		source ~/.config/profiles/labs.sh
 		;;
 	p | personal)
 		source ~/.config/profiles/personal.sh
@@ -74,14 +74,14 @@ profile() {
 	list | ls)
 		echo "Available profiles:"
 		echo "  • w / work"
-		echo "  • yz / yourzoned"
+		echo "  • l / labs"
 		echo "  • p / personal"
 		;;
 	current)
 		echo "Current profile: ${WORK_PROFILE:-none}"
 		;;
 	*)
-		echo "Usage: profile {w|yz|p|list|current}"
+		echo "Usage: profile {w|l|p|list|current}"
 		;;
 	esac
 }
@@ -94,7 +94,7 @@ echo "  source ~/.config/profiles/profile.zsh"
 echo ""
 echo "Then use:"
 echo "  profile w         # Switch to Work"
-echo "  profile yz        # Switch to Yourzoned"
+echo "  profile l         # Switch to Labs"
 echo "  profile p         # Switch to Personal"
 echo "  profile list      # List available profiles"
 echo "  profile current   # Show current profile"

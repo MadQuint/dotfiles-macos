@@ -37,8 +37,8 @@
 [includeIf "gitdir:~/Work/"]
 	path = ~/.config/git/profiles/work.config
 
-[includeIf "gitdir:~/Work/yourzoned/"]
-	path = ~/.config/git/profiles/yourzoned.config
+[includeIf "gitdir:~/Labs/"]
+	path = ~/.config/git/profiles/labs.config
 
 [includeIf "gitdir:~/Personal/"]
 	path = ~/.config/git/profiles/personal.config

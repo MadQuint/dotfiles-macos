@@ -51,7 +51,7 @@ prompt_for_value "WORK_EMAIL" "Work email (or press enter to skip)"
 
 # Get optional profile information
 echo -e "\n${YELLOW}Profile Configuration (optional - press enter to skip):${NC}"
-read -p "Yourzoned email: " YOURZONED_EMAIL
+read -p "Labs email: " LABS_EMAIL
 read -p "Personal email: " PERSONAL_EMAIL
 
 # Update git config
@@ -76,16 +76,16 @@ EOF
 chmod +x "$PROFILES_DIR/work.sh"
 echo -e "${GREEN}✓ Work profile configured${NC}"
 
-# Yourzoned profile (if provided)
-if [[ -n "$YOURZONED_EMAIL" ]]; then
-	cat > "$PROFILES_DIR/yourzoned.sh" <<EOF
+# Labs profile (if provided)
+if [[ -n "$LABS_EMAIL" ]]; then
+	cat > "$PROFILES_DIR/labs.sh" <<EOF
 #!/bin/bash
-export WORK_PROFILE="yourzoned"
-export WORK_EMAIL="$YOURZONED_EMAIL"
-git config user.email "$YOURZONED_EMAIL"
+export WORK_PROFILE="labs"
+export WORK_EMAIL="$LABS_EMAIL"
+git config user.email "$LABS_EMAIL"
 EOF
-	chmod +x "$PROFILES_DIR/yourzoned.sh"
-	echo -e "${GREEN}✓ Yourzoned profile configured${NC}"
+	chmod +x "$PROFILES_DIR/labs.sh"
+	echo -e "${GREEN}✓ Labs profile configured${NC}"
 fi
 
 # Personal profile (if provided)
@@ -110,9 +110,9 @@ profile() {
 		[[ -f ~/.config/profiles/work.sh ]] && source ~/.config/profiles/work.sh
 		echo "Switched to: work"
 		;;
-	yz | yourzoned)
-		[[ -f ~/.config/profiles/yourzoned.sh ]] && source ~/.config/profiles/yourzoned.sh
-		echo "Switched to: yourzoned"
+	l | labs)
+		[[ -f ~/.config/profiles/labs.sh ]] && source ~/.config/profiles/labs.sh
+		echo "Switched to: labs"
 		;;
 	p | personal)
 		[[ -f ~/.config/profiles/personal.sh ]] && source ~/.config/profiles/personal.sh
@@ -121,14 +121,14 @@ profile() {
 	list | ls)
 		echo "Available profiles:"
 		echo "  • w / work"
-		[[ -f ~/.config/profiles/yourzoned.sh ]] && echo "  • yz / yourzoned"
+		[[ -f ~/.config/profiles/labs.sh ]] && echo "  • l / labs"
 		[[ -f ~/.config/profiles/personal.sh ]] && echo "  • p / personal"
 		;;
 	current)
 		echo "Current profile: ${WORK_PROFILE:-not set}"
 		;;
 	*)
-		echo "Usage: profile {w|yz|p|list|current}"
+		echo "Usage: profile {w|l|p|list|current}"
 		;;
 	esac
 }
@@ -142,7 +142,7 @@ USER_EMAIL=your.email@example.com
 
 # Profile Emails
 WORK_EMAIL=work@example.com
-YOURZONED_EMAIL=yourzoned@example.com
+LABS_EMAIL=labs@example.com
 PERSONAL_EMAIL=personal@example.com
 EOF
 
@@ -152,7 +152,7 @@ cat > .env <<EOF
 USER_NAME=$USER_NAME
 USER_EMAIL=$USER_EMAIL
 WORK_EMAIL=${WORK_EMAIL:-$USER_EMAIL}
-YOURZONED_EMAIL=$YOURZONED_EMAIL
+LABS_EMAIL=$LABS_EMAIL
 PERSONAL_EMAIL=$PERSONAL_EMAIL
 EOF
 
@@ -165,7 +165,7 @@ echo "  2. Switch to your work profile: ${BLUE}profile w${NC}"
 echo "  3. Verify git config: ${BLUE}git config --list | grep user${NC}"
 echo ""
 echo -e "${YELLOW}Profile Management:${NC}"
-echo "  • Switch profiles: ${BLUE}profile w${NC} (or yz, p)"
+echo "  • Switch profiles: ${BLUE}profile w${NC} (or l, p)"
 echo "  • List available: ${BLUE}profile list${NC}"
 echo "  • View current: ${BLUE}profile current${NC}"
 echo ""
