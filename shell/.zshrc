@@ -82,6 +82,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Fix menuselect keymap error
+zmodload zsh/complist
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
