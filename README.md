@@ -26,11 +26,13 @@ cd ~/.dotfiles
 ```
 
 **During installation, you'll be prompted to enter:**
+
 - Your full name
 - Your email address
 - Profile-specific emails (work, labs, personal)
 
 This will automatically:
+
 1. Install Xcode Command Line Tools
 2. Install Homebrew and all packages from Brewfile
 3. Install Oh My Zsh and Powerlevel10k
@@ -50,17 +52,20 @@ cd ~/.dotfiles
 ## Privacy & Security
 
 ✅ **What's NOT in the repository:**
+
 - `.env` file (your personal configuration)
 - SSH keys (`~/.ssh/`)
 - Git credentials
 - Any sensitive personal information
 
 ✅ **What IS in the repository:**
+
 - Generic templates with placeholders
 - Configuration scripts
 - Documentation
 
 The `.env` file is:
+
 - Created locally during `./install`
 - Added to `.gitignore`
 - Contains your personal details
@@ -108,6 +113,7 @@ The `.env` file is:
 After running `./install`, the `configure.sh` script will:
 
 1. Prompt you for personal details:
+
    ```
    Full name: [your response]
    Email address: [your response]
@@ -152,6 +158,7 @@ profile current
 To customize your setup:
 
 1. **Edit personal details:**
+
    ```bash
    vim ~/.env
    source ~/.config/profiles/work.sh
@@ -176,6 +183,7 @@ antidote update
 ```
 
 Current plugins:
+
 - zsh-autosuggestions
 - zsh-completions
 - zsh-syntax-highlighting
@@ -199,6 +207,7 @@ Securely manage SSH keys with macOS Keychain integration:
 ```
 
 **Features:**
+
 - ✅ Automatic macOS Keychain integration (Touch ID unlock)
 - ✅ Backup keys to `private/` directory (gitignored)
 - ✅ Restore keys on new machines
@@ -261,6 +270,7 @@ brew bundle
 ### Adding New Profiles
 
 1. Copy profile template:
+
    ```bash
    cp git/profiles/work.config git/profiles/yourprofile.config
    ```
@@ -268,6 +278,7 @@ brew bundle
 2. Edit with your details
 
 3. Update `.env`:
+
    ```bash
    echo "YOURPROFILE_EMAIL=email@example.com" >> ~/.env
    ```
