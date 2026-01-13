@@ -80,10 +80,10 @@ ZSH_THEME=""
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
-
-# Fix menuselect keymap error
+# Fix menuselect keymap error - must load before Oh My Zsh
 zmodload zsh/complist
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
