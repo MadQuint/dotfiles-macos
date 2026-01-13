@@ -127,9 +127,10 @@ if command -v direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
-# trash-cli - safe alternative to rm
-if command -v trash &> /dev/null; then
-  alias rm='echo "Use trash command instead of rm, or use \\rm for real rm"'
+# trash-cli - safe alternative to rm (keg-only, need explicit PATH)
+export PATH="/opt/homebrew/opt/trash-cli/bin:$PATH"
+if command -v trash-put &> /dev/null; then
+  alias rm='echo "Use trash-put instead of rm, or use \\rm for real rm"'
   alias tp='trash-put'
   alias tl='trash-list'
   alias tr='trash-restore'
