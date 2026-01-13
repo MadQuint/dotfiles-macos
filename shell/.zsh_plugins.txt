@@ -1,0 +1,18 @@
+# Zsh plugins managed by Antidote
+# Popular useful plugins
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+mattmc3/zephyr
+
+# Development & Version Control
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/brew
+ohmyzsh/ohmyzsh path:plugins/docker
+
+# Productivity & Navigation
+ohmyzsh/ohmyzsh path:plugins/fzf
+ohmyzsh/ohmyzsh path:plugins/history
+
+# System
+ohmyzsh/ohmyzsh path:plugins/macos

@@ -1,0 +1,44 @@
+[user]
+	name = Gianni
+	email = gianni@example.com
+
+[core]
+	editor = nvim
+	pager = less -F
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	visual = log --graph --oneline --all
+
+[pull]
+	rebase = true
+
+[fetch]
+	prune = true
+
+[push]
+	default = current
+
+[init]
+	defaultBranch = main
+
+[color]
+	ui = true
+
+[commit]
+	gpgSign = false
+
+# Work profile configurations (can be overridden per profile)
+[includeIf "gitdir:~/Work/"]
+	path = ~/.config/git/profiles/work.config
+
+[includeIf "gitdir:~/Work/yourzoned/"]
+	path = ~/.config/git/profiles/yourzoned.config
+
+[includeIf "gitdir:~/Personal/"]
+	path = ~/.config/git/profiles/personal.config

@@ -1,0 +1,22 @@
+[
+  {
+    "key": "cmd+k cmd+0",
+    "command": "workbench.action.toggleZenMode"
+  },
+  {
+    "key": "cmd+b",
+    "command": "workbench.action.toggleSidebar"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "cmd+shift+d",
+    "command": "editor.action.copyLinesDownAction"
+  },
+  {
+    "key": "cmd+shift+k",
+    "command": "editor.action.deleteLine"
+  }
+]

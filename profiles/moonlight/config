@@ -1,0 +1,34 @@
+# Moonlight Client Configuration
+# Place this in ~/.config/moonlight/config
+
+# Resolution settings
+resolution=1920x1080
+
+# Framerate
+framerate=60
+
+# Bitrate (Mbps) - 0 for auto
+bitrate=0
+
+# Audio configuration
+audio=true
+audio-codec=aac
+
+# Video codec preference
+video-codec=h264
+
+# Use hardware acceleration if available
+hw-accel=true
+
+# Enable vsync
+vsync=true
+
+# Full screen mode
+fullscreen=false
+
+# Input settings
+mouse-acceleration=false
+gamepad-mouse=false
+
+# Network settings
+network-optimizations=true

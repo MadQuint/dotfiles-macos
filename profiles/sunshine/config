@@ -1,0 +1,47 @@
+# Sunshine Server Configuration
+# Place this in ~/.config/sunshine/config
+
+# Server port
+port=47989
+
+# HTTPS port
+secure_port=47990
+
+# Bind address (0.0.0.0 for all interfaces)
+address=0.0.0.0
+
+# Video codec preference
+# Options: h264, hevc, vp8, vp9
+video_codec=h264
+
+# Bitrate settings
+bitrate=5000  # kbps
+
+# Resolution
+resolution=1920x1080
+
+# Framerate
+framerate=60
+
+# Enable hardware encoding
+hw_encode=true
+
+# Use NVENC for NVIDIA GPUs
+# hw_encode_codec=nvenc
+
+# Quality preset
+# Options: ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow
+preset=fast
+
+# Enable audio
+audio=true
+
+# Audio codec
+audio_codec=aac
+
+# Logging level
+# Options: 0 (trace), 1 (debug), 2 (info), 3 (warning), 4 (error), 5 (critical)
+log_level=2
+
+# Performance settings
+performance_mode=true

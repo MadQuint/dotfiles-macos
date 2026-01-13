@@ -8,7 +8,6 @@ export PATH="$HOMEBREW_PATH:$PATH:$VSCODE_PATH:$PNPM_HOME"
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 
 # set omz variables
-ZSH=$(antidote path ohmyzsh/ohmyzsh)
 ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
 [[ -d $ZSH_CACHE_DIR ]] || mkdir -p $ZSH_CACHE_DIR
 
@@ -29,8 +28,8 @@ antidote load
 # Syntax highligthing for man pages using bat
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -38,7 +37,7 @@ source $(brew --prefix nvm)/nvm.sh
 # Zoxide
 eval "$(zoxide init zsh)"
 
-source "$HOME/.dotfiles/shell/aliases.zsh"
-source "$HOME/.dotfiles/shell/functions.zsh"
+source "$HOME/.shell/aliases.zsh"
+source "$HOME/.shell/functions.zsh"
 
 eval "$(fnm env --use-on-cd --shell zsh)"
