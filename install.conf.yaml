@@ -32,6 +32,7 @@
     ~/.config/moonlight/config: profiles/moonlight/config
     ~/.config/sunshine/config: profiles/sunshine/config
     ~/.profile.current: profiles/.profile.current
+    ~/Projects/.code-server: config/code-server
 - create:
     - ~/Library/Fonts
     - ~/Projects

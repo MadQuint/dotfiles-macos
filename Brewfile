@@ -73,6 +73,7 @@ cask "microsoft-remote-desktop"
 cask "microsoft-teams"
 cask "obs"
 cask "ollama"
+cask "orbstack" # Docker/container management
 cask "plex"
 cask "raycast"
 cask "rocket"

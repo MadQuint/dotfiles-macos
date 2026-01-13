@@ -43,3 +43,7 @@ alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
 # Directories
 alias dotfiles="cd $DOTFILES"
 alias library="cd $HOME/Library"
+
+# Code-server (Docker)
+alias code-server="~/Projects/.code-server/manage.sh"
+alias codeserver="~/Projects/.code-server/manage.sh"
