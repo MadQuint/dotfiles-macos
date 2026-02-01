@@ -32,6 +32,7 @@
     ~/.config/moonlight/config: profiles/moonlight/config
     ~/.config/sunshine/config: profiles/sunshine/config
     ~/Library/LaunchAgents/com.user.vscode.plist: config/launchagents/com.user.vscode.plist
+    ~/Library/Application Support/Code/User/settings.json: config/vscode/settings.json
 - create:
     - ~/Library/Fonts
     - ~/Projects
