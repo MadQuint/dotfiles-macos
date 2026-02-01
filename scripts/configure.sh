@@ -46,11 +46,9 @@ echo -e "${YELLOW}User Configuration:${NC}"
 prompt_for_value "USER_NAME" "Full name"
 prompt_for_value "USER_EMAIL" "Email address"
 
-# Ensure we have at least work profile email
-prompt_for_value "WORK_EMAIL" "Work email (or press enter to skip)"
-
 # Get optional profile information
 echo -e "\n${YELLOW}Profile Configuration (optional - press enter to skip):${NC}"
+read -p "Work email: " WORK_EMAIL
 read -p "Labs email: " LABS_EMAIL
 read -p "Personal email: " PERSONAL_EMAIL
 
@@ -149,47 +147,41 @@ EOF
 # Save configuration to .env (local, not committed)
 cat > .env <<EOF
 # Auto-generated user configuration
-USER_NAME=$USER_NAME
-USER_EMAIL=$USER_EMAIL
-WORK_EMAIL=${WORK_EMAIL:-$USER_EMAIL}
-LABS_EMAIL=$LABS_EMAIL
-PERSONAL_EMAIL=$PERSONAL_EMAIL
+USER_NAME="$USER_NAME"
+USER_EMAIL="$USER_EMAIL"
+WORK_EMAIL="${WORK_EMAIL:-$USER_EMAIL}"
+LABS_EMAIL="$LABS_EMAIL"
+PERSONAL_EMAIL="$PERSONAL_EMAIL"
 EOF
 
 chmod 600 .env
 
 echo -e "\n${GREEN}✅ User Configuration Complete!${NC}\n"
 
-# Ask about Coder setup
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${YELLOW}  Coder Setup (Development Workspaces)${NC}"
-echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
-echo "Coder provides remote development workspaces accessible via VS Code Desktop."
-read -p "Configure Coder now? (Y/n): " setup_coder
+# Ask about Coder setup (if script exists)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -f "$SCRIPT_DIR/setup-coder.sh" ]]; then
+    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${YELLOW}  Coder Setup (Development Workspaces)${NC}"
+    echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}\n"
+    echo "Coder provides remote development workspaces accessible via VS Code Desktop."
+    read -p "Configure Coder now? (Y/n): " setup_coder
 
-if [[ ! "$setup_coder" =~ ^[Nn]$ ]]; then
-    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    "$SCRIPT_DIR/setup-coder.sh"
-else
-    echo -e "${BLUE}Skipping Coder setup. Run later with: ~/dotfiles-macos/scripts/setup-coder.sh${NC}"
+    if [[ ! "$setup_coder" =~ ^[Nn]$ ]]; then
+        "$SCRIPT_DIR/setup-coder.sh"
+    else
+        echo -e "${BLUE}Skipping Coder setup. Run later with: ~/dotfiles-macos/scripts/setup-coder.sh${NC}"
+    fi
 fi
 
 echo -e "\n${GREEN}✅ Dotfiles Configuration Complete!${NC}\n"
 echo -e "${YELLOW}Next Steps:${NC}"
-echo "  1. Configure Powerlevel10k: ${BLUE}p10k configure${NC}"
-echo "  2. Switch to your work profile: ${BLUE}profile w${NC}"
-echo "  3. Verify git config: ${BLUE}git config --list | grep user${NC}"
-if [[ ! "$setup_coder" =~ ^[Nn]$ ]]; then
-    echo "  4. Access Coder: ${BLUE}open http://localhost:7080${NC}"
-fi
+echo -e "  1. Switch to your work profile: ${BLUE}profile w${NC}"
+echo -e "  2. Verify git config: ${BLUE}git config --list | grep user${NC}"
 echo ""
 echo -e "${YELLOW}Profile Management:${NC}"
-echo "  • Switch profiles: ${BLUE}profile w${NC} (or l, p)"
-echo "  • List available: ${BLUE}profile list${NC}"
-echo "  • View current: ${BLUE}profile current${NC}"
-echo ""
-echo -e "${YELLOW}Coder Management:${NC}"
-echo "  • After sourcing ~/.zshrc:"
-echo "    ${BLUE}coder-start${NC}, ${BLUE}coder-stop${NC}, ${BLUE}coder-status${NC}"
+echo -e "  • Switch profiles: ${BLUE}profile w${NC} (or l, p)"
+echo -e "  • List available: ${BLUE}profile list${NC}"
+echo -e "  • View current: ${BLUE}profile current${NC}"
 echo ""
 echo -e "${YELLOW}📝 Note:${NC} Configuration saved to .env (local, not committed)"

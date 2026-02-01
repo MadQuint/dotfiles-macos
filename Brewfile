@@ -1,8 +1,6 @@
 tap "cloudflare/cloudflare"
-tap "homebrew/bundle"
 tap "jackielii/tap"
-
-cask_args no_quarantine: true, no_binaries: true
+tap "koekeishiya/formulae"
 
 brew "antidote" # The fastest shell plugin manager
 brew 'bash' # Latest Bash version
@@ -28,6 +26,7 @@ brew "git"
 brew "git-extras"
 brew "git-quick-stats"
 brew "gh" # GitHub CLI
+brew "copilot-cli" # GitHub Copilot CLI
 brew "delta" # Better git diff viewer
 brew "lazygit" # Terminal UI for git
 
@@ -42,24 +41,20 @@ brew "direnv" # Load/unload env vars by directory
 brew "atuin" # Magical shell history with sync
 brew "btop" # Beautiful system monitor
 brew "trash-cli" # Safe rm alternative
-brew "starship" # Cross-shell prompt (alternative to Powerlevel10k)
+brew "starship" # Cross-shell prompt
 
 # Node
 brew "fnm" # Node version manager
 
-# Streaming & RDP
-brew "moonlight-qt" # Moonlight game streaming client
-brew "sunshine" # Sunshine streaming server
-
 # Development Workspaces
-brew "coder" # Coder CLI for remote dev workspaces
+brew "coder" # Coder CLI and server for remote dev
 
-cask "affinity-designer"
-cask "affinity-photo"
-cask "affinity-publisher"
+# Streaming & RDP
+cask "moonlight" # Moonlight game streaming client
+
+cask "affinity"
 cask "alacritty"
 cask "appcleaner"
-cask "brave-browser"
 cask "caffeine"
 cask "devcleaner"  # Remove Xcode caches and unused simulators
 cask "discord"
@@ -75,22 +70,20 @@ cask "microsoft-edge"
 cask "microsoft-remote-desktop"
 cask "microsoft-teams"
 cask "obs"
-cask "ollama"
+cask "ollama-app"
 cask "orbstack" # Docker/container management
 cask "plex"
 cask "raycast"
-cask "rocket"
 cask "screen-studio"
 cask "shottr"
 cask "transmit"
 cask "tripmode"
 cask "visual-studio-code"
+cask "intellij-idea" # IntelliJ IDEA IDE
 cask "whatsapp"
-cask "wifiman"
 
 # Quicklook
 cask 'qlmarkdown' # $ xattr -r -d com.apple.quarantine "FULL PATH OF THE QLMarkdown.app (you can drag the file to get the pull path)" - https://github.com/sbarex/QLMarkdown
-cask 'quicklook-json'
 cask 'quicklook-csv'
 
 # Mac App Store

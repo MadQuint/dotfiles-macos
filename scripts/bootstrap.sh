@@ -62,15 +62,7 @@ else
 	echo -e "${GREEN}✓ Oh My Zsh already installed${NC}"
 fi
 
-# 7. Install Powerlevel10k
-if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
-	echo -e "${YELLOW}Installing Powerlevel10k theme...${NC}"
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-else
-	echo -e "${GREEN}✓ Powerlevel10k already installed${NC}"
-fi
-
-# 8. Set Zsh as default shell
+# 7. Set Zsh as default shell
 if [[ "$SHELL" != *"zsh"* ]]; then
 	echo -e "${YELLOW}Setting Zsh as default shell...${NC}"
 	sudo chsh -s /bin/zsh "$(whoami)"
@@ -84,7 +76,6 @@ chmod +x "$(dirname "$0")"/*.sh
 
 echo -e "\n${GREEN}✓ Bootstrap complete!${NC}"
 echo -e "${YELLOW}Next steps:${NC}"
-echo "  1. Run 'p10k configure' to configure Powerlevel10k"
-echo "  2. Run 'profile-switch.sh' to set your work profile"
-echo "  3. Close and reopen your terminal"
-echo "  4. Update git config with your emails in ~/.config/git/profiles/"
+echo "  1. Run 'profile-switch.sh' to set your work profile"
+echo "  2. Close and reopen your terminal"
+echo "  3. Update git config with your emails in ~/.config/git/profiles/"

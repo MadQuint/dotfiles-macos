@@ -31,8 +31,7 @@
       relink: true
     ~/.config/moonlight/config: profiles/moonlight/config
     ~/.config/sunshine/config: profiles/sunshine/config
-    ~/.profile.current: profiles/.profile.current
-    ~/Projects/.code-server: config/code-server
+    ~/Library/LaunchAgents/com.user.vscode.plist: config/launchagents/com.user.vscode.plist
 - create:
     - ~/Library/Fonts
     - ~/Projects

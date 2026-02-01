@@ -1,0 +1,11 @@
+version: 0.2
+name: IntelliJ IDEA Workspace
+description: Local macOS workspace with IntelliJ IDEA for Java/Kotlin development
+icon: /icon/intellij.svg
+tags:
+  - java
+  - intellij
+  - local
+  - macos
+
+default_ttl: 0h  # No auto-shutdown for local workspaces

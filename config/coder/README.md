@@ -1,328 +1,272 @@
-# Coder Setup
+# Coder Configuration (Native - No Docker)
 
-A self-hosted Coder deployment using Docker Compose, integrated with VS Code Desktop via the Coder extension.
+Coder server running natively on macOS with local workspace templates.
 
-## What is Coder?
+## Overview
 
-Coder is an open-source platform for provisioning remote development workspaces. Unlike code-server (browser-based VS Code), Coder lets you use your local VS Code Desktop to connect to remote development environments.
+This setup runs Coder **natively** on your Mac - no Docker containers needed. Workspaces are created as local directories on your filesystem, giving you:
+
+- ✅ **Direct filesystem access** - No volume mounts or container overhead
+- ✅ **Native performance** - Full Mac hardware utilization
+- ✅ **iPad access** - Manage workspaces from your iPad via browser
+- ✅ **IntelliJ integration** - One-click open in IntelliJ IDEA
+- ✅ **Multi-profile support** - Work and Labs profiles
 
 ## Quick Start
 
-### 1. Initial Setup
+### 1. Install Coder (if not already installed)
 
 ```bash
-# Create environment file
-cd ~/dotfiles-macos/config/coder
-cp .env.example .env
-# Edit .env and set a secure CODER_DB_PASSWORD
-vim .env
-
-# Start Coder
-./manage.sh start
-```
-
-### 2. First-Time Configuration
-
-1. Open http://localhost:7080 in your browser
-2. Create your first admin user account
-3. You'll be taken to the Coder dashboard
-
-### 3. Install Coder CLI
-
-```bash
-# macOS installation
 brew install coder
-
-# Login to your Coder instance
-coder login http://localhost:7080
 ```
 
-### 4. Install VS Code Extension
+### 2. Run Setup
 
-1. Open VS Code Desktop
-2. Install the "Coder" extension from the marketplace
-3. Click the Coder icon in the sidebar
-4. Add your Coder deployment URL: http://localhost:7080
-5. Authenticate when prompted
+```bash
+cd ~/.dotfiles/config/coder
+./setup.sh
+```
+
+This will:
+- Start Coder server on port 7080
+- Create your admin account
+- Import workspace templates (IntelliJ, General)
+- Show you next steps
+
+### 3. Create Your First Workspace
+
+```bash
+# IntelliJ workspace for Java
+coder create my-java-project --template=intellij-workspace
+
+# General workspace for Node.js/Python/Web
+coder create my-web-project --template=general-workspace
+```
 
 ## Management Commands
 
 ```bash
-# Start Coder
-./manage.sh start
+# Server management
+coder-start         # Start Coder server
+coder-stop          # Stop Coder server
+coder-restart       # Restart Coder server
+coder-status        # Check server status
+coder-logs          # View server logs
+coder-url           # Show access URLs
+coder-login         # Login to Coder
 
-# Stop Coder
-./manage.sh stop
-
-# Restart Coder
-./manage.sh restart
-
-# View logs
-./manage.sh logs
-
-# Check status
-./manage.sh status
-
-# Update to latest version
-./manage.sh update
-
-# Show access URLs
-./manage.sh url
-
-# Clean all data (destructive)
-./manage.sh clean
+# Workspace management
+coder list          # List all workspaces
+coder create        # Create new workspace
+coder delete        # Delete workspace
+coder open          # Open workspace app
+coder ssh           # SSH into workspace
 ```
 
-## Creating Your First Workspace
+## Available Templates
 
-### Using the Web UI
+### IntelliJ Workspace
 
-1. Go to http://localhost:7080
-2. Click "Templates" → "Create Template"
-3. Choose a starter template (Docker, Kubernetes, etc.)
-4. Click "Create Workspace"
-5. Your workspace will be provisioned
+For Java/Kotlin development with IntelliJ IDEA.
 
-### Using VS Code Extension
+**Features:**
+- Java/OpenJDK (11, 17, or 21)
+- IntelliJ IDEA integration
+- Git initialization
+- VSCode fallback
+- Terminal access
 
-1. Open VS Code Desktop
-2. Click the Coder icon in the sidebar
-3. Click "Create Workspace"
-4. Choose a template
-5. Once ready, click "Open in VS Code"
+**Create:**
+```bash
+coder create my-java-app --template=intellij-workspace \
+  --parameter project_name=my-java-app \
+  --parameter java_version=21
+```
 
-### Using CLI
+**Open in IntelliJ:**
+```bash
+coder open my-java-app --app intellij
+```
+
+### General Workspace
+
+For Node.js, Python, Web development.
+
+**Features:**
+- Node.js via fnm
+- Python support
+- Git initialization
+- VSCode integration
+- Terminal access
+
+**Create:**
+```bash
+coder create my-web-app --template=general-workspace \
+  --parameter project_name=my-web-app
+```
+
+## Access from iPad
+
+1. Ensure your Mac and iPad are on the same network
+2. Get your Mac's IP address:
+   ```bash
+   coder-url
+   ```
+3. Open Safari on iPad and navigate to the URL shown (e.g., `http://192.168.1.x:7080`)
+4. Login with your Coder credentials
+5. Create and manage workspaces from the web UI
+
+**Note:** IntelliJ IDEA requires the desktop app, so from iPad you can:
+- Use the web-based code editor
+- Manage workspaces (create, delete, configure)
+- Access terminal via web
+- Use VSCode web interface (if configured)
+
+## Workspace Structure
+
+All workspaces are created under:
+
+```
+~/Workspaces/
+└── {username}/
+    ├── my-java-project/
+    │   ├── .git/
+    │   ├── .gitignore
+    │   └── src/
+    └── my-web-project/
+        ├── .git/
+        ├── .gitignore
+        └── ...
+```
+
+## Integration with Profiles
+
+Coder works with your dotfiles profiles:
 
 ```bash
-# List available templates
-coder templates list
+# Switch to work profile
+profile work
 
-# Create a workspace
-coder create my-workspace --template=docker
+# Start Coder server
+coder-start
 
-# SSH into workspace
-coder ssh my-workspace
+# Create work workspace
+coder create work-project --template=intellij-workspace
 
-# Open in VS Code
-coder code my-workspace
+# Open in IntelliJ
+coder open work-project --app intellij
 ```
 
-## Workspace Templates
+Your work profile's git config will be active in all workspaces.
 
-Coder uses Terraform templates to provision workspaces. Here's a simple Docker-based template:
+## Auto-Start (Optional)
 
-### Basic Docker Template
+To start Coder automatically on login, create a LaunchAgent:
 
-Create `~/dotfiles-macos/config/coder/templates/docker-workspace/main.tf`:
-
-```hcl
-terraform {
-  required_providers {
-    coder = {
-      source = "coder/coder"
-    }
-    docker = {
-      source = "kreuzwerker/docker"
-    }
-  }
-}
-
-provider "coder" {}
-provider "docker" {}
-
-data "coder_workspace" "me" {}
-
-resource "coder_agent" "main" {
-  os   = "linux"
-  arch = "amd64"
-  startup_script = <<-EOT
-    #!/bin/bash
-    # Install dotfiles
-    if [ ! -d ~/dotfiles-macos ]; then
-      git clone https://github.com/yourusername/dotfiles-macos.git ~/dotfiles-macos
-      cd ~/dotfiles-macos && ./install
-    fi
-  EOT
-}
-
-resource "docker_container" "workspace" {
-  image = "codercom/enterprise-base:ubuntu"
-  name  = "coder-${data.coder_workspace.me.owner}-${data.coder_workspace.me.name}"
-  env = [
-    "CODER_AGENT_TOKEN=${coder_agent.main.token}",
-  ]
-  volumes {
-    container_path = "/home/coder"
-    volume_name    = docker_volume.home.name
-  }
-}
-
-resource "docker_volume" "home" {
-  name = "coder-${data.coder_workspace.me.owner}-${data.coder_workspace.me.name}-home"
-}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.coder</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/YOUR_USERNAME/dotfiles-macos/config/coder/manage.sh</string>
+        <string>start</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <false/>
+    <key>StandardOutPath</key>
+    <string>/tmp/coder-launch.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/coder-launch-error.log</string>
+</dict>
+</plist>
 ```
 
-## Shell Aliases Integration
-
-Add to your `~/dotfiles-macos/shell/aliases.zsh`:
+Save to `~/Library/LaunchAgents/com.user.coder.plist` and load:
 
 ```bash
-# Coder aliases
-alias coder-start='~/dotfiles-macos/config/coder/manage.sh start'
-alias coder-stop='~/dotfiles-macos/config/coder/manage.sh stop'
-alias coder-logs='~/dotfiles-macos/config/coder/manage.sh logs'
-alias coder-status='~/dotfiles-macos/config/coder/manage.sh status'
-```
-
-Then reload your shell:
-```bash
-source ~/.zshrc
-```
-
-## Remote Access Options
-
-### Option 1: Tailscale VPN (Recommended)
-
-```bash
-# Install Tailscale
-brew install --cask tailscale
-
-# Start Tailscale and login
-open -a Tailscale
-
-# Get your Tailscale IP
-tailscale ip -4
-
-# Access Coder from any device on your Tailscale network
-# Use: http://[your-tailscale-ip]:7080
-```
-
-Update `.env`:
-```bash
-CODER_ACCESS_URL=http://[your-tailscale-ip]:7080
-```
-
-### Option 2: Cloudflare Tunnel
-
-```bash
-# Install cloudflared
-brew install cloudflare/cloudflare/cloudflared
-
-# Login and create tunnel
-cloudflared tunnel login
-cloudflared tunnel create coder
-cloudflared tunnel route dns coder coder.yourdomain.com
-
-# Configure tunnel
-cat > ~/.cloudflared/config.yml <<EOF
-tunnel: coder
-credentials-file: /Users/gianni/.cloudflared/[tunnel-id].json
-
-ingress:
-  - hostname: coder.yourdomain.com
-    service: http://localhost:7080
-  - service: http_status:404
-EOF
-
-# Run tunnel
-cloudflared tunnel run coder
-```
-
-Update `.env`:
-```bash
-CODER_ACCESS_URL=https://coder.yourdomain.com
-```
-
-## Integration with Dotfiles
-
-Your workspaces can automatically set up your dotfiles:
-
-1. Add your dotfiles repo URL in workspace creation
-2. Or include in template startup script:
-
-```bash
-git clone https://github.com/yourusername/dotfiles-macos.git ~/dotfiles
-cd ~/dotfiles && ./install
-```
-
-## Architecture
-
-```
-┌─────────────────┐
-│  VS Code Desktop│
-│   (Your Mac)    │
-└────────┬────────┘
-         │ Coder Extension
-         │
-┌────────▼────────┐
-│  Coder Server   │◄──── Docker Compose
-│  localhost:7080 │      (PostgreSQL DB)
-└────────┬────────┘
-         │
-    ┌────▼────┐
-    │Workspace│
-    │Container│
-    └─────────┘
+launchctl load ~/Library/LaunchAgents/com.user.coder.plist
 ```
 
 ## Troubleshooting
 
-### Coder not starting
+### Server won't start
 
-Check logs:
 ```bash
-./manage.sh logs-all
+# Check if port is already in use
+lsof -i :7080
+
+# View logs
+coder-logs
 ```
 
-### Database connection issues
+### Can't login
 
-Reset database:
 ```bash
-./manage.sh stop
-docker volume rm coder_coder-postgres-data
-./manage.sh start
+# Restart server
+coder-restart
+
+# Try logging in again
+coder-login
 ```
 
-### VS Code extension can't connect
+### Template import fails
 
-1. Verify Coder is running: `./manage.sh status`
-2. Check access URL in VS Code matches your deployment
-3. Re-authenticate in VS Code
+```bash
+# Ensure you're in the coder directory
+cd ~/.dotfiles/config/coder
 
-### Port conflicts
-
-If port 7080 is in use, edit `docker-compose.yml`:
-```yaml
-ports:
-  - "7081:7080"  # Change 7080 to 7081
+# Manually push template
+cd templates/intellij-workspace
+coder templates push intellij-workspace --directory . --yes
 ```
 
-Update CODER_ACCESS_URL accordingly.
+### iPad can't connect
+
+- Ensure Mac and iPad are on same network
+- Check firewall settings (System Settings > Network > Firewall)
+- Try accessing via Mac's IP: `http://[mac-ip]:7080`
+
+## Architecture
+
+```
+┌─────────────────────────────────────────┐
+│         macOS (Native)                  │
+│                                         │
+│  ┌───────────────────────────────────┐ │
+│  │   Coder Server (Port 7080)        │ │
+│  │   ~/.dotfiles/config/coder/.data/ │ │
+│  └──────────┬────────────────────────┘ │
+│             │                           │
+│  ┌──────────▼────────────────────────┐ │
+│  │   Workspace Templates             │ │
+│  │   - intellij-workspace            │ │
+│  │   - general-workspace             │ │
+│  └──────────┬────────────────────────┘ │
+│             │                           │
+│  ┌──────────▼────────────────────────┐ │
+│  │   Workspaces                      │ │
+│  │   ~/Workspaces/{user}/{project}/  │ │
+│  │   - Native filesystem             │ │
+│  │   - Direct access                 │ │
+│  └───────────────────────────────────┘ │
+└─────────────────────────────────────────┘
+            │
+            │ HTTP :7080
+            │
+    ┌───────▼───────┐
+    │  iPad/Browser │
+    │  Safari       │
+    └───────────────┘
+```
 
 ## Resources
 
 - [Coder Documentation](https://coder.com/docs)
-- [Coder VS Code Extension](https://marketplace.visualstudio.com/items?itemName=coder.coder-remote)
-- [Coder CLI](https://coder.com/docs/cli)
-- [Template Examples](https://github.com/coder/coder/tree/main/examples/templates)
-
-## Comparison: Coder vs code-server
-
-| Feature | Coder | code-server |
-|---------|-------|-------------|
-| Interface | VS Code Desktop | Browser |
-| Multi-workspace | ✅ Yes | ❌ No |
-| Templates | ✅ Yes | ❌ No |
-| Team Management | ✅ Yes | ❌ No |
-| Local Extensions | ✅ Yes | ❌ Limited |
-| Offline Work | ✅ Yes | ❌ No |
-
-## Next Steps
-
-1. ✅ Start Coder: `./manage.sh start`
-2. ✅ Create admin account at http://localhost:7080
-3. ✅ Install Coder CLI: `brew install coder`
-4. ✅ Install VS Code extension: Search "Coder" in VS Code
-5. ✅ Create your first workspace template
-6. ✅ Connect VS Code Desktop to your workspace
-7. ✅ (Optional) Set up Tailscale for remote access
+- [Terraform Provider](https://registry.terraform.io/providers/coder/coder/latest/docs)
+- Templates: `~/.dotfiles/config/coder/templates/`

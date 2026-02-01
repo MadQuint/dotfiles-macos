@@ -1,21 +1,20 @@
 # Dotfiles macOS
 
-A comprehensive, privacy-first dotfiles configuration for macOS with support for multiple work profiles, Zsh with Powerlevel10k, and streaming support (Moonlight/Sunshine).
+A streamlined, privacy-first dotfiles configuration for macOS with multi-profile support, modern CLI tools, and automated workspace startup.
 
 ## Features
 
 - **Privacy-focused**: Generic templates with env-based personalization
 - **Multi-profile support**: Work, Labs, Personal with automatic git config switching
+- **Coder workspaces**: Native (non-Docker) development environments with iPad access
 - **Zsh shell** with Powerlevel10k theme and Antidote plugin manager
 - **SSH key management** with macOS Keychain integration
-- **Modern CLI tools**: ripgrep, fd, delta, lazygit, atuin, btop
-- **Coder workspaces**: Remote dev environments via VS Code Desktop
-- **code-server**: Browser-based VS Code for iPad
-- **Streaming setup** with Moonlight (client) and Sunshine (server)
+- **Modern CLI tools**: ripgrep, fd, delta, lazygit, atuin, btop, tmux
 - **Window management** with Yabai and skhd.zig
+- **Automated workspace startup**: Safari + IntelliJ IDEA
+- **Streaming setup** with Moonlight (client) and Sunshine (server)
 - **Homebrew** package management via Brewfile
-- **Automated bootstrap** script for fresh macOS setup
-- **dotbot** for symlink management
+- **dotbot** for automated symlink management
 
 ## Quick Start
 
@@ -29,30 +28,167 @@ cd ~/.dotfiles
 
 **The installer will:**
 1. Install Xcode Command Line Tools
-2. Install Homebrew and all packages from Brewfile (including Coder)
-3. Install Oh My Zsh and Powerlevel10k
-4. Set up all dotfiles (symlinks)
-5. **Prompt for personal details** (name, email, work profiles)
-6. **Optionally configure Coder** (auto-generate secure passwords)
-7. **Start Coder** if you choose to
+2. Install Homebrew and all packages from Brewfile
+3. Set up all dotfiles (symlinks)
+4. Configure Oh My Zsh with Powerlevel10k
+5. Prompt for personal details (name, email, work profiles)
+6. Set up profile-specific git configurations
 
 **You'll be asked:**
 - Your full name
 - Your email address
 - Profile-specific emails (work, labs, personal)
-- Whether to configure Coder development workspaces
 
 This automatically creates personalized profiles and generates a local `.env` file (NOT committed to git).
 
-📖 **See [FRESH_INSTALL.md](FRESH_INSTALL.md) for complete step-by-step guide.**
-
 ### Existing Installation
-
-If you already have some configuration:
 
 ```bash
 cd ~/.dotfiles
 ./install
+```
+
+## What's Installed
+
+### Development Tools
+- **Git** + extras (delta, lazygit, gh, git-quick-stats)
+- **Node.js** (via fnm - Fast Node Manager)
+- **Coder** - Remote development workspaces (native, no Docker)
+- **IntelliJ IDEA** - Java/Kotlin IDE
+- **Visual Studio Code** - Code editor
+- **Neovim** - Terminal-based editor
+- **commitizen** - Conventional commits helper
+
+### Shell & Terminal
+- **Zsh** with Powerlevel10k theme
+- **Antidote** - Plugin manager
+- **tmux** - Terminal multiplexer
+- **Alacritty** - GPU-accelerated terminal
+- **eza** - Modern ls replacement
+- **zoxide** - Smart cd with frecency
+- **fzf** - Fuzzy finder
+- **ripgrep** (rg) - Better grep
+- **fd** - Better find
+- **bat** - Better cat with syntax highlighting
+- **atuin** - Magical shell history
+- **direnv** - Auto-load environment variables
+
+### System Tools
+- **btop** - Beautiful system monitor
+- **trash-cli** - Safe rm alternative
+- **Yabai** - Tiling window manager
+- **skhd.zig** - Hotkey daemon
+- **Raycast** - Spotlight replacement
+- **mackup** - Backup app settings
+
+### Browsers
+- **Safari** (default)
+- **Brave Browser**
+- **Google Chrome**
+- **Microsoft Edge**
+
+### Utilities
+- **Homebrew** - Package manager
+- **mas** - Mac App Store CLI
+- **httpie** - User-friendly HTTP client
+- **jq** - JSON processor
+- **tldr** - Simplified man pages
+
+### Streaming & Remote
+- **Moonlight** - Game streaming client
+- **Sunshine** - Streaming server
+- **Microsoft Remote Desktop**
+- **OrbStack** - Docker/container management
+
+### Media & Design
+- **Affinity Designer/Photo/Publisher**
+- **Figma**
+- **OBS Studio**
+- **Screen Studio**
+- **Plex**
+
+### Communication
+- **Microsoft Teams**
+- **Discord**
+- **WhatsApp**
+
+### Security & Network
+- **Little Snitch** - Network monitor
+- **Micro Snitch** - Microphone/camera monitor
+- **NextDNS** - DNS-based ad blocker
+- **TripMode** - Network data limiter
+- **WiFiMan** - Network analyzer
+
+### Productivity
+- **HiddenBar** - Menu bar organizer
+- **Caffeine** - Prevent sleep
+- **AppCleaner** - Uninstaller
+- **DevCleaner** - Xcode cache cleaner
+- **Latest** - App update checker
+- **Shottr** - Screenshot tool
+- **Dropover** - Drag & drop helper
+- **Rocket** - Emoji picker
+
+See `Brewfile` for the complete list.
+
+## How to Start Everything
+
+### Daily Startup (Automated)
+
+Start your complete development environment:
+
+```bash
+# Start work environment (Safari + IntelliJ)
+start-work
+
+# Start labs environment
+start-labs
+
+# Or manually specify
+start-workspace work
+start-workspace labs
+```
+
+This will:
+1. Switch to the appropriate profile (work/labs/personal)
+2. Open Safari with your designated homepage
+3. Launch IntelliJ IDEA
+4. Set up environment variables for that profile
+
+### Manual Startup
+
+If you prefer to start things individually:
+
+```bash
+# Open Safari
+open -a Safari
+
+# Open IntelliJ IDEA
+open -a "IntelliJ IDEA"
+
+# Open VSCode
+code
+
+# Start tmux session
+tmux new -s work
+
+# Switch work profile
+profile work
+```
+
+### LaunchAgents (Auto-start on Login)
+
+VSCode can auto-start on macOS login:
+
+```bash
+# Enable VSCode auto-start
+launch-vscode
+
+# Disable VSCode auto-start
+unlaunch-vscode
+
+# Check status
+launch-status
 ```
 
 ## Privacy & Security
@@ -80,36 +216,57 @@ The `.env` file is:
 ## Directory Structure
 
 ```
-.
-├── install                          # Main installation script (uses dotbot)
-├── install.conf.yaml               # dotbot configuration
-├── .env.example                     # Template for personal configuration
-├── Brewfile                         # Homebrew packages
-├── README.md                        # This file
+dotfiles-macos/
+├── install                    # Main installation script
+├── install.conf.yaml          # Dotbot configuration
+├── Brewfile                   # Homebrew packages
+├── README.md                  # This file
+│
+├── scripts/
+│   ├── bootstrap.sh           # System bootstrap
+│   ├── configure.sh           # Post-install setup
+│   ├── install-brewfile.sh    # Install Homebrew packages
+│   ├── setup-profiles.sh      # Configure work profiles
+│   ├── profile-switch.sh      # Profile switcher utility
+│   ├── start-workspace.sh     # Launch Safari + IntelliJ
+│   └── manage-ssh.sh          # SSH key management
+│
 ├── shell/
-│   ├── .zshrc                      # Zsh configuration
-│   ├── .zsh_plugins.txt            # Antidote plugins manifest
-│   ├── aliases.zsh                 # Custom aliases
-│   ├── functions.zsh               # Custom functions
-│   └── p10k.zsh                    # Powerlevel10k config
+│   ├── .zshrc                 # Zsh configuration
+│   ├── .zsh_plugins.txt       # Antidote plugins
+│   ├── aliases.zsh            # Custom aliases
+│   ├── functions.zsh          # Custom functions
+│   └── starship.toml          # Starship prompt config
+│
 ├── git/
-│   ├── .gitconfig                  # Main git config (generic)
+│   ├── .gitconfig             # Main git config
 │   └── profiles/
-│       ├── work.config             # Work profile
-│       ├── labs.config             # Labs profile
-│       └── personal.config         # Personal profile
+│       ├── work.config        # Work git settings
+│       ├── labs.config        # Labs git settings
+│       └── personal.config    # Personal git settings
+│
+├── config/
+│   ├── alacritty.toml         # Terminal config
+│   ├── tmux.conf              # Tmux config
+│   ├── yabai/yabairc          # Window manager config
+│   ├── skhd/skhdrc            # Hotkey daemon config
+│   ├── mackup.cfg             # App settings backup
+│   ├── coder/                 # Coder configuration
+│   │   ├── manage.sh          # Server management
+│   │   ├── setup.sh           # Quick setup
+│   │   └── templates/         # Workspace templates
+│   │       ├── intellij-workspace/
+│   │       └── general-workspace/
+│   └── launchagents/          # Auto-start services
+│       └── com.user.vscode.plist
+│
 ├── profiles/
-│   ├── moonlight/
-│   │   └── config                  # Moonlight client config
-│   ├── sunshine/
-│   │   └── config                  # Sunshine server config
-│   └── .profile.current            # Current active profile
-└── scripts/
-    ├── bootstrap.sh                # System bootstrap
-    ├── install-brewfile.sh         # Install packages
-    ├── setup-profiles.sh           # Configure profiles
-    ├── configure.sh                # Post-install personalization
-    └── profile-switch.sh           # Profile switcher
+│   ├── moonlight/config       # Streaming client
+│   ├── sunshine/config        # Streaming server
+│   └── .profile.current       # Current active profile
+│
+└── private/                   # Git-ignored directory
+    └── ssh/                   # SSH key backups
 ```
 
 ## Usage
@@ -249,7 +406,57 @@ Securely manage SSH keys with macOS Keychain integration:
 - ✅ Restore keys on new machines
 - ✅ Profile-specific SSH keys (work, labs, personal)
 
-See `private/README.md` for detailed security practices.
+### Coder Development Workspaces
+
+Coder provides remote development workspaces running **natively** on your Mac (no Docker).
+
+#### Quick Setup
+
+```bash
+# Run setup (first time only)
+cd ~/.dotfiles/config/coder
+./setup.sh
+```
+
+This starts the Coder server and imports workspace templates.
+
+#### Create Workspaces
+
+```bash
+# IntelliJ workspace for Java
+coder create my-java-project --template=intellij-workspace
+
+# General workspace for Node.js/Python/Web
+coder create my-web-app --template=general-workspace
+
+# List workspaces
+coder list
+
+# Open in IntelliJ IDEA
+coder open my-java-project --app intellij
+```
+
+#### Server Management
+
+```bash
+coder-start         # Start Coder server
+coder-stop          # Stop server
+coder-restart       # Restart server
+coder-status        # Check status
+coder-logs          # View logs
+coder-url           # Show access URLs
+```
+
+#### iPad Access
+
+Access Coder UI from your iPad:
+
+1. Get your Mac's IP: `coder-url`
+2. Open Safari on iPad
+3. Navigate to `http://[your-mac-ip]:7080`
+4. Create and manage workspaces from the browser
+
+**See `config/coder/README.md` for complete documentation.**
 
 ### Moonlight & Sunshine
 
@@ -270,6 +477,213 @@ vim ~/.config/sunshine/config
 # Configuration is at ~/.config/moonlight/config
 ```
 
+## Cheatsheets
+
+### Tmux Cheatsheet
+
+**Session Management:**
+```bash
+tmux                    # Start new session
+tmux new -s work        # Start new named session
+tmux ls                 # List sessions
+tmux attach -t work     # Attach to session
+tmux kill-session -t work # Kill session
+```
+
+**Prefix Key:** `Ctrl-b` (press Ctrl+b, then the command)
+
+**Window Management:**
+```bash
+Prefix c                # Create new window
+Prefix ,                # Rename window
+Prefix n                # Next window
+Prefix p                # Previous window
+Prefix 0-9              # Switch to window by number
+Prefix w                # List windows
+Prefix &                # Kill window
+```
+
+**Pane Management:**
+```bash
+Prefix %                # Split vertically
+Prefix "                # Split horizontally
+Prefix o                # Switch to next pane
+Prefix ;                # Toggle last active pane
+Prefix arrow keys       # Move between panes
+Prefix z                # Toggle pane zoom
+Prefix x                # Kill pane
+Prefix {                # Move pane left
+Prefix }                # Move pane right
+Prefix Ctrl-o           # Rotate panes
+Prefix !                # Break pane into window
+```
+
+**Resizing Panes:**
+```bash
+Prefix Ctrl-arrow       # Resize pane (hold Ctrl)
+Prefix Alt-arrow        # Resize pane in steps of 5
+```
+
+**Copy Mode (scrollback):**
+```bash
+Prefix [                # Enter copy mode
+Space                   # Start selection
+Enter                   # Copy selection
+Prefix ]                # Paste
+q                       # Quit copy mode
+```
+
+**Miscellaneous:**
+```bash
+Prefix d                # Detach from session
+Prefix t                # Show clock
+Prefix ?                # List all keybindings
+Prefix :                # Enter command mode
+```
+
+**Quick Commands in tmux:**
+```bash
+:new-window -n name     # Create named window
+:split-window           # Split horizontally
+:split-window -h        # Split vertically
+:resize-pane -L 10      # Resize left 10 cells
+```
+
+### Git with Delta (better diffs)
+
+```bash
+git diff                # View changes with Delta pager
+git log -p              # View commit history with diffs
+git show <commit>       # Show commit with diff
+git diff --name-only    # Just show changed file names
+```
+
+### Lazygit Cheatsheet
+
+```bash
+lazygit                 # Launch lazygit UI
+
+# Within lazygit:
+h/j/k/l or arrows       # Navigate
+Space                   # Stage/unstage
+a                       # Stage all
+A                       # Unstage all
+c                       # Commit
+C                       # Commit using git-cz (commitizen)
+P                       # Push
+p                       # Pull
++                       # Create new branch
+b                       # View branches
+f                       # Fetch
+m                       # Merge
+r                       # Rebase
+v                       # View files
+?                       # Help
+q                       # Quit
+```
+
+### FZF (Fuzzy Finder)
+
+```bash
+Ctrl-t                  # Paste selected files/dirs
+Ctrl-r                  # Search command history
+Alt-c                   # cd into selected directory
+
+# In any list:
+Ctrl-j/k                # Navigate
+Ctrl-space              # Multi-select
+Enter                   # Confirm
+Esc                     # Cancel
+```
+
+### Eza (better ls)
+
+```bash
+ls                      # List with git status & icons
+ll                      # Long format with all details
+lt                      # Tree view
+tree                    # Same as lt
+llm                     # Sort by modified time
+```
+
+### Zoxide (smart cd)
+
+```bash
+z project               # Jump to directory containing "project"
+z pro doc               # Jump to dir matching "pro" and "doc"
+zi                      # Interactive selection
+z -                     # Go back to previous directory
+zoxide query project    # Query without changing directory
+```
+
+### Atuin (shell history)
+
+```bash
+Ctrl-r                  # Search history (enhanced)
+atuin search query      # Search for specific command
+atuin stats             # Show usage statistics
+atuin sync              # Sync history (if registered)
+```
+
+### Ripgrep (rg - better grep)
+
+```bash
+rg "pattern"            # Search current directory
+rg -i "pattern"         # Case-insensitive
+rg -w "word"            # Match whole words
+rg -t js "pattern"      # Search only JavaScript files
+rg -g "*.txt" "pattern" # Search files matching glob
+rg -l "pattern"         # List files with matches
+rg -c "pattern"         # Count matches per file
+```
+
+### Btop (system monitor)
+
+```bash
+btop                    # Launch btop
+
+# Within btop:
+Esc                     # Main menu
+m                       # Show/hide menu
+p                       # Process selector
+f                       # Filter processes
++/-                     # Increase/decrease update speed
+q                       # Quit
+```
+
+### Yabai (window manager)
+
+```bash
+# Configured via skhd hotkeys (check ~/.config/skhd/skhdrc)
+# Common shortcuts (if configured):
+Alt-Return              # Open terminal
+Alt-Shift-Space         # Toggle float
+Alt-Space               # Rotate tree
+Alt-f                   # Toggle fullscreen
+Alt-h/j/k/l             # Focus window
+```
+
+### Direnv (auto-load env vars)
+
+```bash
+# In project directory:
+echo 'export VAR=value' > .envrc
+direnv allow            # Allow .envrc to load
+direnv deny             # Deny .envrc
+direnv reload           # Reload current .envrc
+direnv status           # Show status
+```
+
+### Trash-CLI (safe delete)
+
+```bash
+trash-put file.txt      # Move to trash
+trash-list              # List items in trash
+trash-restore           # Restore interactively
+trash-empty             # Empty trash
+trash-empty 10          # Delete items older than 10 days
+```
+
 ## First-Time Setup Checklist
 
 After running `./install`:
@@ -280,8 +694,53 @@ After running `./install`:
 - [ ] Generate SSH keys: `./scripts/manage-ssh.sh` (interactive)
 - [ ] Configure delta git diff: `git config --global core.pager delta`
 - [ ] Setup atuin shell history: `atuin register` (optional)
-- [ ] Set up Sunshine server IP in Moonlight
+- [ ] Start your workspace: `start-work`
+- [ ] Configure IntelliJ IDEA with your preferences
+- [ ] Set up Sunshine server IP in Moonlight (if using streaming)
 - [ ] Close and reopen terminal
+
+## Common Workflows
+
+### Starting Your Day
+
+```bash
+# Start your work environment
+start-work
+
+# Or manually:
+profile work              # Switch to work profile
+tmux new -s work          # Start tmux session
+open -a "IntelliJ IDEA"  # Open IDE
+```
+
+### Working with Git
+
+```bash
+# Quick status check
+git status
+git diff
+
+# Use lazygit for complex operations
+lazygit
+
+# Commit with conventional commits
+cz                       # Uses commitizen
+```
+
+### Project Navigation
+
+```bash
+z myproject              # Jump to project directory
+ls                       # View files with eza
+code .                   # Open in VSCode
+```
+
+### System Monitoring
+
+```bash
+btop                     # Beautiful system monitor
+htop                     # Alternative system monitor
+```
 
 ## Updating Dotfiles
 

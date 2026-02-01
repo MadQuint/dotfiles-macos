@@ -44,14 +44,21 @@ alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
 alias dotfiles="cd $DOTFILES"
 alias library="cd $HOME/Library"
 
-# Code-server (Docker)
-alias code-server="~/Projects/.code-server/manage.sh"
-alias codeserver="~/Projects/.code-server/manage.sh"
-
 # Coder (Development Workspaces)
 alias coder-start='~/dotfiles-macos/config/coder/manage.sh start'
 alias coder-stop='~/dotfiles-macos/config/coder/manage.sh stop'
 alias coder-restart='~/dotfiles-macos/config/coder/manage.sh restart'
-alias coder-logs='~/dotfiles-macos/config/coder/manage.sh logs'
 alias coder-status='~/dotfiles-macos/config/coder/manage.sh status'
+alias coder-logs='~/dotfiles-macos/config/coder/manage.sh logs'
 alias coder-url='~/dotfiles-macos/config/coder/manage.sh url'
+alias coder-login='~/dotfiles-macos/config/coder/manage.sh login'
+
+# Workspace management
+alias start-work='~/dotfiles-macos/scripts/start-workspace.sh work'
+alias start-labs='~/dotfiles-macos/scripts/start-workspace.sh labs'
+alias start-workspace='~/dotfiles-macos/scripts/start-workspace.sh'
+
+# LaunchAgent Management
+alias launch-vscode='launchctl load ~/Library/LaunchAgents/com.user.vscode.plist'
+alias unlaunch-vscode='launchctl unload ~/Library/LaunchAgents/com.user.vscode.plist'
+alias launch-status='launchctl list | grep vscode'

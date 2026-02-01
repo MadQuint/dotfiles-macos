@@ -31,8 +31,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Starship prompt
+eval "$(starship init zsh)"
 
 # Zoxide
 eval "$(zoxide init zsh)"

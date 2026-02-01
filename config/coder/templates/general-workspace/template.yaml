@@ -1,0 +1,12 @@
+version: 0.2
+name: General Workspace
+description: Local macOS workspace for general development (Node.js, Python, Web)
+icon: /icon/code.svg
+tags:
+  - general
+  - local
+  - macos
+  - node
+  - python
+
+default_ttl: 0h
