@@ -1,5 +1,4 @@
 # ZSH aliases
-alias ohmyzsh="code ~/.oh-my-zsh"
 alias zsh_config="code ~/.zshrc"
 alias zsh_reset="source ~/.zshrc"
 
@@ -62,3 +61,9 @@ alias start-workspace='~/dotfiles-macos/scripts/start-workspace.sh'
 alias launch-vscode='launchctl load ~/Library/LaunchAgents/com.user.vscode.plist'
 alias unlaunch-vscode='launchctl unload ~/Library/LaunchAgents/com.user.vscode.plist'
 alias launch-status='launchctl list | grep vscode'
+
+# GitHub Copilot CLI
+alias cop='copilot'
+alias copc='copilot --continue'
+alias copi='copilot -i'
+alias copp='copilot -p'

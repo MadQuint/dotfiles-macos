@@ -27,6 +27,7 @@ cd ~/.dotfiles
 ```
 
 **The installer will:**
+
 1. Install Xcode Command Line Tools
 2. Install Homebrew and all packages from Brewfile
 3. Set up all dotfiles (symlinks)
@@ -35,6 +36,7 @@ cd ~/.dotfiles
 6. Set up profile-specific git configurations
 
 **You'll be asked:**
+
 - Your full name
 - Your email address
 - Profile-specific emails (work, labs, personal)
@@ -51,6 +53,7 @@ cd ~/.dotfiles
 ## What's Installed
 
 ### Development Tools
+
 - **Git** + extras (delta, lazygit, gh, git-quick-stats)
 - **Node.js** (via fnm - Fast Node Manager)
 - **Coder** - Remote development workspaces (native, no Docker)
@@ -60,6 +63,7 @@ cd ~/.dotfiles
 - **commitizen** - Conventional commits helper
 
 ### Shell & Terminal
+
 - **Zsh** with Powerlevel10k theme
 - **Antidote** - Plugin manager
 - **tmux** - Terminal multiplexer
@@ -74,6 +78,7 @@ cd ~/.dotfiles
 - **direnv** - Auto-load environment variables
 
 ### System Tools
+
 - **btop** - Beautiful system monitor
 - **trash-cli** - Safe rm alternative
 - **Yabai** - Tiling window manager
@@ -82,12 +87,14 @@ cd ~/.dotfiles
 - **mackup** - Backup app settings
 
 ### Browsers
+
 - **Safari** (default)
 - **Brave Browser**
 - **Google Chrome**
 - **Microsoft Edge**
 
 ### Utilities
+
 - **Homebrew** - Package manager
 - **mas** - Mac App Store CLI
 - **httpie** - User-friendly HTTP client
@@ -95,12 +102,14 @@ cd ~/.dotfiles
 - **tldr** - Simplified man pages
 
 ### Streaming & Remote
+
 - **Moonlight** - Game streaming client
 - **Sunshine** - Streaming server
 - **Microsoft Remote Desktop**
 - **OrbStack** - Docker/container management
 
 ### Media & Design
+
 - **Affinity Designer/Photo/Publisher**
 - **Figma**
 - **OBS Studio**
@@ -108,11 +117,13 @@ cd ~/.dotfiles
 - **Plex**
 
 ### Communication
+
 - **Microsoft Teams**
 - **Discord**
 - **WhatsApp**
 
 ### Security & Network
+
 - **Little Snitch** - Network monitor
 - **Micro Snitch** - Microphone/camera monitor
 - **NextDNS** - DNS-based ad blocker
@@ -120,6 +131,7 @@ cd ~/.dotfiles
 - **WiFiMan** - Network analyzer
 
 ### Productivity
+
 - **HiddenBar** - Menu bar organizer
 - **Caffeine** - Prevent sleep
 - **AppCleaner** - Uninstaller
@@ -150,6 +162,7 @@ start-workspace labs
 ```
 
 This will:
+
 1. Switch to the appropriate profile (work/labs/personal)
 2. Open Safari with your designated homepage
 3. Launch IntelliJ IDEA
@@ -371,7 +384,6 @@ trash-put file.txt     # Move to trash (alias: tp)
 trash-list             # List trashed items (alias: tl)
 trash-restore          # Restore from trash (alias: tr)
 trash-empty            # Empty trash (alias: te)
-# rm command is aliased to remind you to use trash
 ```
 
 **starship** - Alternative prompt (optional, currently using Powerlevel10k):
@@ -482,6 +494,7 @@ vim ~/.config/sunshine/config
 ### Tmux Cheatsheet
 
 **Session Management:**
+
 ```bash
 tmux                    # Start new session
 tmux new -s work        # Start new named session
@@ -493,6 +506,7 @@ tmux kill-session -t work # Kill session
 **Prefix Key:** `Ctrl-b` (press Ctrl+b, then the command)
 
 **Window Management:**
+
 ```bash
 Prefix c                # Create new window
 Prefix ,                # Rename window
@@ -504,6 +518,7 @@ Prefix &                # Kill window
 ```
 
 **Pane Management:**
+
 ```bash
 Prefix %                # Split vertically
 Prefix "                # Split horizontally
@@ -519,12 +534,14 @@ Prefix !                # Break pane into window
 ```
 
 **Resizing Panes:**
+
 ```bash
 Prefix Ctrl-arrow       # Resize pane (hold Ctrl)
 Prefix Alt-arrow        # Resize pane in steps of 5
 ```
 
 **Copy Mode (scrollback):**
+
 ```bash
 Prefix [                # Enter copy mode
 Space                   # Start selection
@@ -534,6 +551,7 @@ q                       # Quit copy mode
 ```
 
 **Miscellaneous:**
+
 ```bash
 Prefix d                # Detach from session
 Prefix t                # Show clock
@@ -542,6 +560,7 @@ Prefix :                # Enter command mode
 ```
 
 **Quick Commands in tmux:**
+
 ```bash
 :new-window -n name     # Create named window
 :split-window           # Split horizontally
